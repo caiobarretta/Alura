@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8-Condicionais2", "8-Condic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9-Escopo", "9-Escopo\9-Escopo.csproj", "{77CB6196-CA83-49C9-BD82-65C288B62766}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P10-CalculaPoupanca", "P10-CalculaPoupanca\P10-CalculaPoupanca.csproj", "{D6CFA93C-AB53-4928-BDF2-17CE89D08319}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{77CB6196-CA83-49C9-BD82-65C288B62766}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77CB6196-CA83-49C9-BD82-65C288B62766}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77CB6196-CA83-49C9-BD82-65C288B62766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6CFA93C-AB53-4928-BDF2-17CE89D08319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6CFA93C-AB53-4928-BDF2-17CE89D08319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6CFA93C-AB53-4928-BDF2-17CE89D08319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6CFA93C-AB53-4928-BDF2-17CE89D08319}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
