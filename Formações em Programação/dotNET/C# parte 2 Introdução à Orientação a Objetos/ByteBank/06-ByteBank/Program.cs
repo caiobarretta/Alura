@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _05_ByteBank
+namespace _06_ByteBank
 {
     class Program
     {
@@ -13,14 +13,14 @@ namespace _05_ByteBank
             ContaCorrente conta = new ContaCorrente();
             Cliente cliente = new Cliente();
 
-            cliente.nome = "Guilherme";
-            cliente.cpf = "434.564.879-20";
-            cliente.profissao = "Desenvolvedor";
+            cliente.Nome = "Guilherme";
+            cliente.CPF = "434.564.879-20";
+            cliente.Profissao = "Desenvolvedor";
 
             conta.Saldo = -10;
             conta.Titular = cliente;
 
-            Console.WriteLine(conta.Titular.nome);
+            Console.WriteLine(conta.Titular.Nome);
             Console.WriteLine(conta.Saldo);
             Console.ReadLine();
         }
