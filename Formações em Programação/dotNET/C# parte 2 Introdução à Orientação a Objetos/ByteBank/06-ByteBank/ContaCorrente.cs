@@ -4,46 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _06_ByteBank
+namespace _05_ByteBank
 {
     public class ContaCorrente
     {
-        public Cliente titular;
+        public Cliente Titular { get; set; }
+
         public int agencia;
         public int numero;
-        private double saldo = 100;
 
-
-        public double ObterSaldo() => saldo;
-
-        public void DefinirSaldo(double saldo)
+        private double _saldo = 100;
+        public double Saldo
         {
-            if (saldo < 0)
-                return;
-            else
-                this.saldo = saldo;
+            get => _saldo;
+
+            set
+            {
+                if (value < 0)
+                    return;
+                else
+                    _saldo = value;
+            }
         }
 
         public bool Sacar(double valor)
         {
-            if (saldo < valor)
+            if (_saldo < valor)
                 return false;
 
-            saldo -= valor;
+            _saldo -= valor;
             return true;
         }
 
         public void Depositar(double valor)
         {
-            saldo += valor;
+            _saldo += valor;
         }
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (saldo < valor)
+            if (_saldo < valor)
                 return false;
 
-            saldo -= valor;
+            _saldo -= valor;
             contaDestino.Depositar(valor);
             return true;
         }
