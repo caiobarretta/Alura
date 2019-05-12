@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associadas a um assembly.
-[assembly: AssemblyTitle("P10-CalculaPoupanca")]
+[assembly: AssemblyTitle("04-ByteBank")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("P10-CalculaPoupanca")]
+[assembly: AssemblyProduct("04-ByteBank")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // O GUID a seguir será destinado à ID de typelib se este projeto for exposto para COM
-[assembly: Guid("d6cfa93c-ab53-4928-bdf2-17ce89d08319")]
+[assembly: Guid("65c9c058-e739-417c-abe2-5c4318984e81")]
 
 // As informações da versão de um assembly consistem nos quatro valores a seguir:
 //

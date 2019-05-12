@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CC8969FD-8E84-4551-A6A8-CA5DF2D805F8}</ProjectGuid>
+    <ProjectGuid>{65C9C058-E739-417C-ABE2-5C4318984E81}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>P12_CalculaInvestimentoLongoPrazo</RootNamespace>
-    <AssemblyName>P12-CalculaInvestimentoLongoPrazo</AssemblyName>
+    <RootNamespace>_04_ByteBank</RootNamespace>
+    <AssemblyName>04-ByteBank</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContaCorrente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
