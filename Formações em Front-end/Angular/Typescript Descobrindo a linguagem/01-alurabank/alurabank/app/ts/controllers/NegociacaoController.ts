@@ -1,7 +1,7 @@
 class NegociacaoController{
-    private _inputData;
-    private _inputQuantidade;
-    private _inputValor;
+    private _inputData: Date;
+    private _inputQuantidade: number;
+    private _inputValor: number;
 
     constructor(){
         this._inputData = document.querySelector("#data");
