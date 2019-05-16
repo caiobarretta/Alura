@@ -43,5 +43,10 @@
     </div>
 
     <script src="lib/jquery.min.js"></script>
+    <script src="lib/system.js"></script>
+    <script>
+        System.defaultSJExtensions = true;
+        System.import('js/app.js').catch(err => console.error(err));
+    </script>
 </body>
 </html>
