@@ -47,16 +47,13 @@ System.register(["./../services/Index", "../models/index", "../views/Index", "..
                     return data.getDay() != DiaDaSemana.Sábado && data.getDay() != DiaDaSemana.Domingo;
                 }
                 importaDados() {
-                    function isOk(res) {
-                        if (res.ok) {
-                            return res;
-                        }
-                        else {
-                            throw new Error(res.statusText);
-                        }
-                    }
                     this._negociacaoService
-                        .obterNegociacoes(isOk)
+                        .obterNegociacoes(res => {
+                        if (res.ok)
+                            return res;
+                        else
+                            throw new Error(res.statusText);
+                    })
                         .then(negociacoes => {
                         if (negociacoes) {
                             negociacoes.forEach(negocicao => this._negociacoes.adiciona(negocicao));
