@@ -44,6 +44,10 @@ export class NegociacaoController{
     private _EhDiaUtil(data: Date): boolean{
         return data.getDay() != DiaDaSemana.Sábado && data.getDay() != DiaDaSemana.Domingo;
     }
+
+    importaDados(){
+        alert("oi");
+    }
 }
 
 enum DiaDaSemana{
