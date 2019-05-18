@@ -1,4 +1,4 @@
-System.register(["../models/index", "../views/Index", "../helpers/decorators/index"], function (exports_1, context_1) {
+System.register(["./../services/Index", "../models/index", "../views/Index", "../helpers/decorators/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,14 +7,17 @@ System.register(["../models/index", "../views/Index", "../helpers/decorators/ind
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_1, Index_1, index_2, NegociacaoController, DiaDaSemana;
+    var Index_1, index_1, Index_2, index_2, NegociacaoController, DiaDaSemana;
     return {
         setters: [
+            function (Index_1_1) {
+                Index_1 = Index_1_1;
+            },
             function (index_1_1) {
                 index_1 = index_1_1;
             },
-            function (Index_1_1) {
-                Index_1 = Index_1_1;
+            function (Index_2_1) {
+                Index_2 = Index_2_1;
             },
             function (index_2_1) {
                 index_2 = index_2_1;
@@ -24,8 +27,9 @@ System.register(["../models/index", "../views/Index", "../helpers/decorators/ind
             NegociacaoController = class NegociacaoController {
                 constructor() {
                     this._negociacoes = new index_1.Negociacoes();
-                    this._negociacoesView = new Index_1.NegociacoesView('#negociacoesView');
-                    this._mensagemView = new Index_1.MensagemView('#mensagemView');
+                    this._negociacoesView = new Index_2.NegociacoesView('#negociacoesView');
+                    this._mensagemView = new Index_2.MensagemView('#mensagemView');
+                    this._negociacaoService = new Index_1.NegociacaoService();
                     this._negociacoesView.update(this._negociacoes);
                 }
                 adiciona() {
@@ -51,16 +55,14 @@ System.register(["../models/index", "../views/Index", "../helpers/decorators/ind
                             throw new Error(res.statusText);
                         }
                     }
-                    fetch('http://localhost:8080/dados')
-                        .then(res => isOk(res))
-                        .then(res => res.json())
-                        .then((dados) => {
-                        dados
-                            .map(dado => new index_1.Negociacao(new Date(), dado.vezes, dado.montante))
-                            .forEach(negocicao => this._negociacoes.adiciona(negocicao));
-                        this._negociacoesView.update(this._negociacoes);
-                    })
-                        .catch(err => console.log(err.message));
+                    this._negociacaoService
+                        .obterNegociacoes(isOk)
+                        .then(negociacoes => {
+                        if (negociacoes) {
+                            negociacoes.forEach(negocicao => this._negociacoes.adiciona(negocicao));
+                            this._negociacoesView.update(this._negociacoes);
+                        }
+                    });
                 }
             };
             __decorate([

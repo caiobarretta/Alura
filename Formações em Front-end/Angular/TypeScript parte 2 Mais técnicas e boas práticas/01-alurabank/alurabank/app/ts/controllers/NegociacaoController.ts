@@ -1,4 +1,5 @@
-import { Negociacoes, Negociacao, NegociacaoParcial } from "../models/index";
+import { NegociacaoService } from './../services/Index';
+import { Negociacoes, Negociacao } from "../models/index";
 import { NegociacoesView, MensagemView } from "../views/Index";
 import { domInject, throttle } from "../helpers/decorators/index";
 
@@ -16,6 +17,8 @@ export class NegociacaoController{
     private _negociacoes = new Negociacoes();
     private _negociacoesView = new NegociacoesView('#negociacoesView');
     private _mensagemView = new MensagemView('#mensagemView');
+
+    private _negociacaoService = new NegociacaoService();
 
     constructor(){
         this._negociacoesView.update(this._negociacoes);
@@ -57,17 +60,14 @@ export class NegociacaoController{
                 throw new Error(res.statusText);
             }
         }
-
-        fetch('http://localhost:8080/dados')
-            .then(res => isOk(res))
-            .then(res => res.json())
-            .then((dados: NegociacaoParcial[]) => {
-                dados
-                .map(dado => new Negociacao(new Date(), dado.vezes, dado.montante))
-                .forEach(negocicao => this._negociacoes.adiciona(negocicao))
-                this._negociacoesView.update(this._negociacoes);
-            })
-        .catch(err => console.log(err.message));
+        this._negociacaoService
+            .obterNegociacoes(isOk)
+            .then(negociacoes =>{
+                if(negociacoes){
+                    negociacoes.forEach(negocicao => this._negociacoes.adiciona(negocicao));
+                    this._negociacoesView.update(this._negociacoes);
+                }
+            });
     }
 }
 
