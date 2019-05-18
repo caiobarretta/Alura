@@ -71,10 +71,12 @@ export class NegociacaoController{
                         
                         ).forEach(negocicao => 
                             this._negociacoes.adiciona(negocicao));
-                            
+
                     this._negociacoesView.update(this._negociacoes);
                 }
 
+            }).catch(err => {
+                this._mensagemView.update(err.message);
             });
     }
 }

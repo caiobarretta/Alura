@@ -66,6 +66,8 @@ System.register(["./../services/Index", "../models/index", "../views/Index", "..
                                 .some(jaImportada => negociacao.ehIgual(jaImportada))).forEach(negocicao => this._negociacoes.adiciona(negocicao));
                             this._negociacoesView.update(this._negociacoes);
                         }
+                    }).catch(err => {
+                        this._mensagemView.update(err.message);
                     });
                 }
             };
