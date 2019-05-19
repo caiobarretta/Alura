@@ -11,7 +11,7 @@ namespace ByteBank.Sistemas
     {
         public string Senha { get; set; }
 
-        public bool Logar(Diretor funcionario, string senhaTentativa)
+        public bool Logar(Autenticavel funcionario, string senhaTentativa)
         {
             bool usuarioAutenticado = funcionario.Autenticar(senhaTentativa);
 
