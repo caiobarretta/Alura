@@ -11,23 +11,7 @@ namespace ByteBank.Sistemas
     {
         public string Senha { get; set; }
 
-        public bool Logar(Autenticavel funcionario, string senhaTentativa)
-        {
-            bool usuarioAutenticado = funcionario.Autenticar(senhaTentativa);
-
-            if (usuarioAutenticado)
-            {
-                Console.WriteLine("Bem-vindo ao sistema!");
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("Senha incorreta!");
-                return false;
-            }
-        }
-
-        public bool Logar(GerenteDeConta funcionario, string senhaTentativa)
+        public bool Logar(IAutenticavel funcionario, string senhaTentativa)
         {
             bool usuarioAutenticado = funcionario.Autenticar(senhaTentativa);
 

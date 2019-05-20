@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Sistemas
 {
-    public abstract class Autenticavel
+    public interface IAutenticavel
     {
-        public string Senha { get; set; }
-        public bool Autenticar(string senha)
-        {
-            return Senha == senha;
-        }
+        bool Autenticar(string senha);
     }
 }
