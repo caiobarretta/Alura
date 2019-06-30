@@ -10,20 +10,11 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Metodo();
-            }
-            catch (DivideByZeroException)
-            {
-                Console.WriteLine("Não é possível divisão por zero.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
-                Console.WriteLine("Aconteceu um erro!");
-            }
+
+            ContaCorrente contaCorrente = new ContaCorrente(12312, 123123123);
+            contaCorrente.Agencia = 1234;
+
+            Console.WriteLine("Execução Finalizada, clique enter para sair");
             Console.ReadLine();
         }
         //Teste com a cadeia de chamada:
