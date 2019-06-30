@@ -13,10 +13,11 @@ namespace ByteBank
 
             try
             {
-                ContaCorrente contaCorrente = new ContaCorrente(514, 5640);
+                ContaCorrente contaCorrente = new ContaCorrente(514, 0);
             }
             catch (ArgumentException ex)
             {
+                Console.WriteLine("Argumento com Problema: {0}", ex.ParamName);
                 Console.WriteLine("Ocorreu um excessão do tipo ArgumentException");
                 Console.WriteLine(ex.Message);
             }
