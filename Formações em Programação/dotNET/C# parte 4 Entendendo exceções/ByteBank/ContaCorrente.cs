@@ -4,18 +4,14 @@ namespace ByteBank
 {
     public class ContaCorrente
     {
-
         public static double TaxaOperacao { get; private set; }
         public Cliente Titular { get; set; }
         public int ContadorSaquesNaoPermitidos { get; private set; }
         public int ContadorTransferenciasNaoPermitidas { get; private set; }
         public static int TotalDeContasCriadas { get; private set; }
         public int Agencia { get; }
-
         public int Numero { get; }
-
         private double _saldo = 100;
-
         public double Saldo
         {
             get
@@ -32,8 +28,6 @@ namespace ByteBank
                 _saldo = value;
             }
         }
-
-
         public ContaCorrente(int agencia, int numero)
         {
             if (agencia <= 0)
@@ -48,8 +42,6 @@ namespace ByteBank
             TotalDeContasCriadas++;
             TaxaOperacao = 30 / TotalDeContasCriadas;
         }
-
-
         public void Sacar(double valor)
         {
             if (valor < 0)
@@ -63,10 +55,7 @@ namespace ByteBank
 
             _saldo -= valor;
         }
-
         public void Depositar(double valor) => _saldo += valor;
-
-
         public void Transferir(double valor, ContaCorrente contaDestino)
         {
             if (valor < 0)
