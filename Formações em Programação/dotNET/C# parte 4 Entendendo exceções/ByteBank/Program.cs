@@ -18,10 +18,10 @@ namespace ByteBank
             {
                 Console.WriteLine("Não é possível divisão por zero.");
             }
-            catch (Exception erro)
+            catch (Exception ex)
             {
-                Console.WriteLine(erro.Message);
-                Console.WriteLine(erro.StackTrace);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 Console.WriteLine("Aconteceu um erro!");
             }
             Console.ReadLine();
@@ -38,6 +38,17 @@ namespace ByteBank
 
         }
 
-        private static int Dividir(int numero, int divisor) => numero / divisor;
+        private static int Dividir(int numero, int divisor)
+        {
+            try
+            {
+                return numero / divisor;
+            }
+            catch(DivideByZeroException)
+            {
+                Console.WriteLine("Exceção com número:{0} e divisor: {1}", numero, divisor);
+                throw;
+            }
+        }
     }
 }
