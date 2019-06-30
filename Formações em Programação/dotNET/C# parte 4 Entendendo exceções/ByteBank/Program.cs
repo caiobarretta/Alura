@@ -16,7 +16,7 @@ namespace ByteBank
                 ContaCorrente contaCorrente = new ContaCorrente(514, 2543534);
                 ContaCorrente contaCorrenteDestino = new ContaCorrente(567, 345345);
 
-                contaCorrenteDestino.Transferir(-10, contaCorrente);
+                contaCorrenteDestino.Transferir(10000, contaCorrente);
 
                 contaCorrente.Depositar(50);
                 Console.WriteLine("O Saldo é: {0}",contaCorrente.Saldo);
@@ -26,6 +26,11 @@ namespace ByteBank
             }
             catch (SaldoInsuficienteException ex)
             {
+                Console.WriteLine(ex.Saldo);
+                Console.WriteLine(ex.ValorSaque);
+
+                Console.WriteLine(ex.StackTrace);
+
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Exceção do tipo SaldoInsuficienteException");
             }
