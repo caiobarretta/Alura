@@ -11,31 +11,42 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
-            CarregarContas();
+            try
+            {
+                CarregarContas();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Catch no método main");
+            }
 
             Console.WriteLine("Execução Finalizada, clique enter para sair");
             Console.ReadLine();
         }
         public static void CarregarContas()
         {
-            LeitorDeArquivo leitor = null;
 
-            try
+            using (LeitorDeArquivo leitor = new LeitorDeArquivo("contas.txt"))
             {
-                leitor = new LeitorDeArquivo("contas.txt");
-                leitor.LerProximaLinha();
-                leitor.LerProximaLinha();
+
                 leitor.LerProximaLinha();
             }
-            catch (IOException)
-            {
-                Console.WriteLine("Exceção do tipo IOException");
-            }
-            finally
-            {
-                if(leitor != null)
-                    leitor.Fechar();
-            }
+
+            // ----------------------------------------------------------------------------
+            //LeitorDeArquivo leitor = null;
+            //try
+            //{
+            //    leitor = new LeitorDeArquivo("contas.txt");
+            //    leitor.LerProximaLinha();
+            //    leitor.LerProximaLinha();
+            //    leitor.LerProximaLinha();
+            //}
+            //finally
+            //{
+            //    Console.WriteLine("Executando o Finally");
+            //    if(leitor != null)
+            //        leitor.Fechar();
+            //}
 
         }
         public static void TestaInnerException()
