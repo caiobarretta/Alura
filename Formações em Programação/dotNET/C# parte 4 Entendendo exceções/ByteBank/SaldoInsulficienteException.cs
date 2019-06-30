@@ -8,15 +8,21 @@ namespace ByteBank
 {
     public class SaldoInsuficienteException : Exception
     {
+
+        public double Saldo { get; }
+        public double ValorSaque { get; }
         public SaldoInsuficienteException()
         {
 
         }
 
-        public SaldoInsuficienteException(string mensagem)
-            : base(mensagem)
-        {
+        public SaldoInsuficienteException(string mensagem) : base(mensagem) { }
 
+        public SaldoInsuficienteException(double saldo, double valorSaque) : 
+            this(string.Format("saldo insuficiente para o valor de: {0}", valorSaque))
+        {
+            Saldo = saldo;
+            ValorSaque = valorSaque;
         }
     }
 }
