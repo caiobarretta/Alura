@@ -8,25 +8,31 @@ namespace ByteBank.Modelos
 {
     public class SaldoInsuficienteException : OperacaoFinanceiraException
     {
-
         public double Saldo { get; }
         public double ValorSaque { get; }
+
         public SaldoInsuficienteException()
         {
 
         }
 
-        public SaldoInsuficienteException(string mensagem) : base(mensagem) { }
-
-        public SaldoInsuficienteException(double saldo, double valorSaque) : 
-            this(string.Format("saldo insuficiente para o valor de: {0}", valorSaque))
+        public SaldoInsuficienteException(double saldo, double valorSaque)
+            : this("Tentativa de saque do valor de " + valorSaque + " em uma conta com saldo de " + saldo)
         {
             Saldo = saldo;
             ValorSaque = valorSaque;
         }
-        public SaldoInsuficienteException(string message, Exception innerException) : base(message, innerException)
+
+        public SaldoInsuficienteException(string mensagem)
+            : base(mensagem)
+        {
+        }
+
+        public SaldoInsuficienteException(string mensagem, Exception excecaoInterna)
+            : base(mensagem, excecaoInterna)
         {
 
         }
     }
+
 }

@@ -12,11 +12,15 @@ namespace ByteBank.Modelos
         {
 
         }
-        public OperacaoFinanceiraException(string message) : base(message)
+
+        public OperacaoFinanceiraException(string mensagem)
+            : base(mensagem)
         {
 
         }
-        public OperacaoFinanceiraException(string message, Exception innerException) : base(message, innerException)
+
+        public OperacaoFinanceiraException(string mensagem, Exception excecaoInterna)
+            : base(mensagem, excecaoInterna)
         {
 
         }

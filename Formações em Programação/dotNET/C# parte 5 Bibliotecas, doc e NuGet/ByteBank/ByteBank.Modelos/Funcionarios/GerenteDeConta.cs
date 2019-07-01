@@ -10,16 +10,16 @@ namespace ByteBank.Modelos.Funcionarios
     {
         public GerenteDeConta(string cpf) : base(4000, cpf)
         {
-
         }
+
         public override void AumentarSalario()
         {
-            Salario *= 1.25;
+            Salario *= 1.05;
         }
-        public override double GetBonificacao()
+
+        internal protected override double GetBonificacao()
         {
             return Salario * 0.25;
         }
-
     }
 }

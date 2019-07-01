@@ -10,13 +10,14 @@ namespace ByteBank.Modelos.Funcionarios
     {
         public Designer(string cpf) : base(3000, cpf)
         {
-
         }
+
         public override void AumentarSalario()
         {
-            Salario *= 1.17;
+            Salario *= 1.11;
         }
-        public override double GetBonificacao()
+
+        internal protected override double GetBonificacao()
         {
             return Salario * 0.17;
         }

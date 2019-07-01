@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FCC25D4C-38F5-48E3-9C52-A6649A6AFA63}</ProjectGuid>
+    <ProjectGuid>{C2175F0D-7024-465E-947F-C0FB51887A9C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ByteBank.Modelos</RootNamespace>
     <AssemblyName>ByteBank.Modelos</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,7 +45,6 @@
     <Compile Include="Funcionarios\Auxiliar.cs" />
     <Compile Include="Funcionarios\Desenvolvedor.cs" />
     <Compile Include="Funcionarios\Designer.cs" />
-    <Compile Include="Funcionarios\Diretor.cs" />
     <Compile Include="Funcionarios\Funcionario.cs" />
     <Compile Include="Funcionarios\FuncionarioAutenticavel.cs" />
     <Compile Include="Funcionarios\GerenteDeConta.cs" />
@@ -55,9 +53,7 @@
     <Compile Include="OperacaoFinanceiraException.cs" />
     <Compile Include="ParceiroComercial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SaldoInsulficienteException.cs" />
-    <Compile Include="SistemaInterno.cs" />
+    <Compile Include="SaldoInsuficienteException.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
