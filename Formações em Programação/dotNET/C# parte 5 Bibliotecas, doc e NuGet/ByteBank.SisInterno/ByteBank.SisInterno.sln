@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteBank.SisInterno", "ByteBank.SisInterno\ByteBank.SisInterno.csproj", "{D42AEF5E-0FC1-4BE2-85A7-8896E17A398B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D42AEF5E-0FC1-4BE2-85A7-8896E17A398B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42AEF5E-0FC1-4BE2-85A7-8896E17A398B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42AEF5E-0FC1-4BE2-85A7-8896E17A398B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42AEF5E-0FC1-4BE2-85A7-8896E17A398B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31C93DEA-6DD7-4D9B-A290-88E252F0B0C6}
+	EndGlobalSection
+EndGlobal
