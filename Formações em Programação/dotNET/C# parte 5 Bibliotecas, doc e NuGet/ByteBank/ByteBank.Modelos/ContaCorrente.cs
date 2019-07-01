@@ -35,8 +35,6 @@ namespace ByteBank.Modelos
                 _saldo = value;
             }
         }
-
-
         /// <summary>
         /// Cria uma instância de ContaCorrente com os argumentos utilizados.
         /// </summary>
