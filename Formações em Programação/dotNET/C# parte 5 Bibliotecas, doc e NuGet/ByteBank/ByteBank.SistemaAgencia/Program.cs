@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
+using Humanizer;
 
 namespace ByteBank.SistemaAgencia
 {
@@ -18,19 +19,9 @@ namespace ByteBank.SistemaAgencia
             TimeSpan diferenca = DataFimPagamento - DataCorrente;
 
 
-            Console.WriteLine("Vencimento em :{0}", GetIntervaloDeTempoLegivel(diferenca));
+            Console.WriteLine("Vencimento em :{0} ", TimeSpanHumanizeExtensions.Humanize(diferenca));
 
             Console.ReadLine();
-        }
-
-        static string GetIntervaloDeTempoLegivel(TimeSpan timeSpan)
-        {
-            if (timeSpan.Days > 30)
-            {
-                int quantidadeMenses = timeSpan.Days / 30;
-                return string.Format("{0} meses", quantidadeMenses);
-            }
-            return string.Format("{0} dias", timeSpan.Days);
         }
     }
 }
