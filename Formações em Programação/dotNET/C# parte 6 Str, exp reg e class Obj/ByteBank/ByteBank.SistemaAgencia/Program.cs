@@ -17,10 +17,23 @@ namespace ByteBank.SistemaAgencia
             // pagina?argumentos
             // 012345678
 
-            string url = "paginas?argumentos";
+            string textoVazio = "";
+            string textoNulo = null;
+
+            Console.WriteLine(string.IsNullOrEmpty(textoVazio));
+            Console.WriteLine(string.IsNullOrEmpty(textoNulo));
+            Console.ReadLine();
+
+            ExtratorValorDeArgumentosURL extrator = new ExtratorValorDeArgumentosURL("");
+
+            string url = "pagina?moedaOrigem=real&moedaDestino=dolar";
+
+            int indiceInterrogacao = url.IndexOf('?');
+
+            Console.WriteLine(indiceInterrogacao);
 
             Console.WriteLine(url);
-            var argumentos = url.Substring(8);
+            var argumentos = url.Substring(indiceInterrogacao + 1);
             Console.WriteLine(argumentos);
 
             Console.ReadLine();
