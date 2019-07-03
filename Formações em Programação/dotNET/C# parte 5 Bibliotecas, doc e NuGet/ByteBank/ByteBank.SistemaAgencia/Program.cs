@@ -12,14 +12,25 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
-            ContaCorrente contaCorrente = new ContaCorrente(123, 1244356);
+            DateTime DataFimPagamento = new DateTime(2020, 08, 17);
+            DateTime DataCorrente = DateTime.Now;
 
-            new ContaCorrente(1234, 123456);
+            TimeSpan diferenca = DataFimPagamento - DataCorrente;
 
-            Funcionario funcionario = null; 
 
-            Console.WriteLine(contaCorrente.Numero);
+            Console.WriteLine("Vencimento em :{0}", GetIntervaloDeTempoLegivel(diferenca));
+
             Console.ReadLine();
+        }
+
+        static string GetIntervaloDeTempoLegivel(TimeSpan timeSpan)
+        {
+            if (timeSpan.Days > 30)
+            {
+                int quantidadeMenses = timeSpan.Days / 30;
+                return string.Format("{0} meses", quantidadeMenses);
+            }
+            return string.Format("{0} dias", timeSpan.Days);
         }
     }
 }
