@@ -19,7 +19,7 @@ namespace ByteBank.SistemaAgencia
             TimeSpan diferenca = DataFimPagamento - DataCorrente;
 
 
-            Console.WriteLine("Vencimento em :{0} ", TimeSpanHumanizeExtensions.Humanize(diferenca));
+            Console.WriteLine("Vencimento em :{0} ", TimeSpanHumanizeExtensions.Humanize(diferenca)); 
 
             Console.ReadLine();
         }
