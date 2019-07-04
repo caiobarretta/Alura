@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
@@ -16,6 +17,16 @@ namespace ByteBank.SistemaAgencia
 
             // pagina?argumentos
             // 012345678
+
+
+
+            string padrao = "[0123456789][0123456789][0123456789][0123456789][-][0123456789][0123456789][0123456789][0123456789]";
+            string textoDeTeste = "Meu nome é Guilherme, me ligue em 4784-4546";
+
+            Match resultado = Regex.Match(textoDeTeste, padrao);
+
+            Console.WriteLine(resultado.Value);
+            Console.ReadLine();
 
 
             string urlTeste = "https://www.bytebank.com/cambio";
