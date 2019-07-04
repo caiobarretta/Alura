@@ -18,6 +18,15 @@ namespace ByteBank.SistemaAgencia
             // 012345678
 
 
+            string urlTeste = "https://www.bytebank.com/cambio";
+            int indiceByteBank = urlTeste.IndexOf("https://www.bytebank.com");
+
+            Console.WriteLine(urlTeste.StartsWith("https://www.bytebank.com"));
+            Console.WriteLine(urlTeste.EndsWith("cambio"));
+            Console.WriteLine(urlTeste.Contains("bytebank"));
+
+            Console.ReadLine();
+
             string urlParametros ="http://www.bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&valor=1500";
             var extratorValores = new ExtratorValorDeArgumentosURL(urlParametros);
 
