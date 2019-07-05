@@ -14,11 +14,24 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Olá, mundo!");
+            Console.WriteLine(123);
+            Console.WriteLine(10.5);
+            Console.WriteLine(true);
 
-            // pagina?argumentos
+            object conta = new ContaCorrente(1234, 12314);
+            object desenvolvedor = new Desenvolvedor("12313212312");
+
+
+            Console.WriteLine(conta);
+
+            Console.ReadLine();
+        }
+
+        static void TestaString()
+        {
+            // pagina ? argumentos
             // 012345678
-
-
 
             //"[0123456789][0123456789][0123456789][0123456789][-][0123456789][0123456789][0123456789][0123456789]";
             //"[0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][0-9]";
@@ -44,7 +57,7 @@ namespace ByteBank.SistemaAgencia
 
             Console.ReadLine();
 
-            string urlParametros ="http://www.bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&valor=1500";
+            string urlParametros = "http://www.bytebank.com/cambio?moedaOrigem=real&moedaDestino=dolar&valor=1500";
             var extratorValores = new ExtratorValorDeArgumentosURL(urlParametros);
 
             string valorMoedaDestino = extratorValores.GetValor("moedaDestino");
@@ -92,7 +105,6 @@ namespace ByteBank.SistemaAgencia
             var argumentos = url.Substring(indiceInterrogacao + 1);
             Console.WriteLine(argumentos);
 
-            Console.ReadLine();
         }
     }
 }
