@@ -24,6 +24,12 @@ namespace ByteBank.SistemaAgencia
             lista.Adicionar(new ContaCorrente(12987, 342467563));
             lista.Adicionar(new ContaCorrente(12987, 342467563));
             lista.Adicionar(new ContaCorrente(12987, 342467563));
+            lista.Adicionar(new ContaCorrente(12987, 342467563));
+            lista.Adicionar(new ContaCorrente(12987, 342467563));
+            lista.Adicionar(new ContaCorrente(12987, 342467563));
+            lista.Adicionar(new ContaCorrente(12987, 342467563));
+            lista.Adicionar(new ContaCorrente(12987, 342467563));
+            lista.Adicionar(new ContaCorrente(12987, 342467563));
 
             Console.ReadLine();
         }
