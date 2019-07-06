@@ -21,6 +21,12 @@ namespace ByteBank.SistemaAgencia
             }
         }
 
+        public void AdicionarVarios(params ContaCorrente[] itens)
+        {
+            foreach (var conta in itens)
+                Adicionar(conta);
+        }
+
         public int Tamanho
         {
             get

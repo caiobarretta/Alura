@@ -16,28 +16,16 @@ namespace ByteBank.SistemaAgencia
         {
             ListaDeContaCorrente lista = new ListaDeContaCorrente();
 
-            var conta = new ContaCorrente(1111, 1111111111);
-
-            lista.Adicionar(conta);
-            lista.Adicionar(new ContaCorrente(12312, 342433423));
-            lista.Adicionar(new ContaCorrente(15462, 30879873));
-            lista.Adicionar(new ContaCorrente(12987, 342467563));
-            lista.Adicionar(new ContaCorrente(12987, 453454535));
-            lista.Adicionar(new ContaCorrente(12987, 908098098));
-            lista.Adicionar(new ContaCorrente(12987, 234242341));
-            lista.Adicionar(new ContaCorrente(12987, 453434526));
-            lista.Adicionar(new ContaCorrente(12987, 342467453));
-            lista.Adicionar(new ContaCorrente(12987, 342453454));
-            lista.Adicionar(new ContaCorrente(12987, 342468678));
-            lista.Adicionar(new ContaCorrente(12987, 342090909));
-            lista.Adicionar(new ContaCorrente(12987, 346698900));
-            lista.Adicionar(new ContaCorrente(12987, 342490898));
-            lista.Adicionar(new ContaCorrente(12987, 342342342));
-
+            lista.AdicionarVarios(
+                new ContaCorrente(1111, 1111111111), new ContaCorrente(15462, 308798734), new ContaCorrente(12987, 342467563),
+                new ContaCorrente(12987, 453454535), new ContaCorrente(12987, 908098098), new ContaCorrente(12987, 234242341),
+                new ContaCorrente(12987, 453434526), new ContaCorrente(12987, 342467453), new ContaCorrente(12987, 342453454),
+                new ContaCorrente(12987, 342468678), new ContaCorrente(12987, 342090909), new ContaCorrente(12987, 346698900),
+                new ContaCorrente(12987, 342490898), new ContaCorrente(12987, 342342342), new ContaCorrente(12312, 342433423));
+            
             for (int i = 0; i < lista.Tamanho; i++)
                 Console.WriteLine(lista[i]);
 
-            lista.Remover(conta);
             Console.ReadLine();
         }
 
