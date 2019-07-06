@@ -22,7 +22,7 @@ namespace ByteBankImportacaoExportacao
 
             while (numeroDeBytesLidos != 0)
             {
-                numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, 1024);
+                numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, buffer.Length);
                 EscreverBufferNaTela(buffer);
             }
 
@@ -31,12 +31,10 @@ namespace ByteBankImportacaoExportacao
 
         static void EscreverBufferNaTela(byte[] buffer)
         {
-            foreach (var meuByte in buffer)
-            {
-                Console.Write(meuByte);
-                Console.Write(" ");
-            }
-                
+
+            //var utf = new UTF32Encoding();
+            var utf = Encoding.Default;
+            Console.WriteLine(utf.GetString(buffer));                
         }
     }
 } 
