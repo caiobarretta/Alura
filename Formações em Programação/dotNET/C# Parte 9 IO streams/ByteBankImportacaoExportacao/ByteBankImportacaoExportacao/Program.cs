@@ -23,19 +23,18 @@ namespace ByteBankImportacaoExportacao
                 while (numeroDeBytesLidos != 0)
                 {
                     numeroDeBytesLidos = fluxoDoArquivo.Read(buffer, 0, buffer.Length);
-                    EscreverBufferNaTela(buffer);
+                    EscreverBufferNaTela(buffer, numeroDeBytesLidos);
                 }
             }
 
             Console.ReadLine();
         }
 
-        static void EscreverBufferNaTela(byte[] buffer)
+        static void EscreverBufferNaTela(byte[] buffer, int bytesLidos)
         {
-
             //var utf = new UTF32Encoding();
             var utf = Encoding.Default;
-            Console.WriteLine(utf.GetString(buffer));                
+            Console.WriteLine(utf.GetString(buffer, 0, bytesLidos));                
         }
     }
 } 
