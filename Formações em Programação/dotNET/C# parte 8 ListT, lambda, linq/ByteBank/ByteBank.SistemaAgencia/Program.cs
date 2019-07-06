@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ByteBank.Modelos;
 using ByteBank.Modelos.Funcionarios;
+using ByteBank.SistemaAgencia.Comparadores;
 using ByteBank.SistemaAgencia.Extensoes;
 using Humanizer;
 
@@ -17,15 +18,18 @@ namespace ByteBank.SistemaAgencia
         {
             var contas = new List<ContaCorrente>()
             {
-                new ContaCorrente(123, 9),
-                new ContaCorrente(123, 1),
-                new ContaCorrente(123, 5),
-                new ContaCorrente(123, 4),
-                new ContaCorrente(123, 6)
+                new ContaCorrente(1, 9),
+                new ContaCorrente(9, 1),
+                new ContaCorrente(5, 5),
+                new ContaCorrente(5, 5),
+                new ContaCorrente(6, 4),
+                new ContaCorrente(4, 6)
             };
 
 
-            contas.Sort();
+            // contas.Sort(); ~~> Chama a implementação dada em IComparable
+
+            contas.Sort(new ComparadorContaCorrenteAgencia());
             contas.ForEach(c => { Console.WriteLine(c); });
 
             Console.ReadLine();
