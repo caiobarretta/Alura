@@ -35,9 +35,26 @@ namespace ByteBank.SistemaAgencia
             {
                 if (_itens[i].Equals(item))
                 {
-
+                    indiceItem = i;
+                    break;
                 }
             }
+
+            if (indiceItem != -1)
+            {
+                for (int i = indiceItem; i < (_proximaPosicao -1); i++)
+                    _itens[i] = _itens[i + 1];
+
+                _proximaPosicao--;
+                _itens[_proximaPosicao] = null;
+            }
+
+        }
+
+        public void EscreverListaNaTela()
+        {
+            for (int i = 0; i < _proximaPosicao; i++)
+                Console.WriteLine(_itens[i]);
         }
 
         private void VerificarCapacidade(int tamanhoNecessario)
