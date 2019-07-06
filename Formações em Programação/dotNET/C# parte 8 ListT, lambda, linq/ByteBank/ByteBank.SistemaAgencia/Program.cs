@@ -33,8 +33,9 @@ namespace ByteBank.SistemaAgencia
 
             // contas.Sort(); ~~> Chama a implementação dada em IComparable
             // contas.Sort(new ComparadorContaCorrenteAgencia());
-            var contasNaNulas = contas.Where(conta => conta != null);
-            var contasOrdenadas = contasNaNulas.OrderBy(conta => conta.Numero);
+            var contasOrdenadas = contas
+                .Where(conta => conta != null)
+                .OrderBy(conta => conta.Numero);
 
             //contas.ForEach(c => { Console.WriteLine(c); });
             foreach (var item in contasOrdenadas)
