@@ -20,12 +20,33 @@ namespace ByteBankImportacaoExportacao
                 while (!leitor.EndOfStream)
                 {
                     var linha = leitor.ReadLine();
-                    Console.WriteLine(linha);
+                    var conta = ConverteStringParaContaCorrente(linha);
+                    //Console.WriteLine(linha);
+                    Console.WriteLine($"Conta Número: {conta.Numero}, Agência: {conta.Agencia}, Títular: {conta.Titular.Nome}, Saldo: {conta.Saldo}");
                 }
             }
 
 
             Console.ReadLine();
+        }
+
+        static ContaCorrente ConverteStringParaContaCorrente(string linha)
+        {
+            var campos = linha.Split(' ');
+
+            var agencia = int.Parse(campos[0]);
+            var numero = int.Parse(campos[1]);
+            var saldo = double.Parse(campos[2].Replace(".",","));
+            var nomeTitular = campos[3];
+
+            var conta = new ContaCorrente(agencia, numero);
+            conta.Depositar(saldo);
+            var cliente = new Cliente();
+            cliente.Nome = nomeTitular;
+            conta.Titular = cliente;
+
+            return conta;
+
         }
     }
 } 
