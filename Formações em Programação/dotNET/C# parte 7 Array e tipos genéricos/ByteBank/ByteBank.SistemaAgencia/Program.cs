@@ -18,6 +18,11 @@ namespace ByteBank.SistemaAgencia
             idades.Adicionar(5);
             idades.AdicionarVarios(5, 123, 123123, 123123, 4354534, 4654, 234);
 
+            for (int i = 0; i < idades.Tamanho; i++)
+            {
+                Console.WriteLine(idades[i]);
+            }
+
             Console.ReadLine();
         }
         
