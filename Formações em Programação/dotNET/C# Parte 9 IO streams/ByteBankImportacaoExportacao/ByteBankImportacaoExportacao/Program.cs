@@ -12,7 +12,7 @@ namespace ByteBankImportacaoExportacao
     { 
         static void Main(string[] args) 
         {
-            CriarArquivo();
+            CriarArquivoWriter();
             
             Console.ReadLine();
         }
