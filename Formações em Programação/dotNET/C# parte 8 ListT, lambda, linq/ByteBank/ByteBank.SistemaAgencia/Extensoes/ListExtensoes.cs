@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ByteBank.SistemaAgencia
+namespace ByteBank.SistemaAgencia.Extensoes
 {
     public static class ListExtensoes
     {
-        public static void AdicionarVarios(this List<int> listaDeInteiros, params int[] itens) => listaDeInteiros.AddRange(itens);
+        public static void AdicionarVarios(this List<T> listaDeInteiros, params T[] itens) => listaDeInteiros.AddRange(itens);
     }
 }
