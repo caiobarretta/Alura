@@ -8,6 +8,6 @@ namespace ByteBank.SistemaAgencia.Extensoes
 {
     public static class ListExtensoes
     {
-        public static void AdicionarVarios(this List<T> listaDeInteiros, params T[] itens) => listaDeInteiros.AddRange(itens);
+        public static void AdicionarVarios<T>(this List<T> listaDeInteiros, params T[] itens) => listaDeInteiros.AddRange(itens);
     }
 }
