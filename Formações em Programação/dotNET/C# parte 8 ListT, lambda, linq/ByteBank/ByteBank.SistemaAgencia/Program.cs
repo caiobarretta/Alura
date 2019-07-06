@@ -17,11 +17,11 @@ namespace ByteBank.SistemaAgencia
         {
             var contas = new List<ContaCorrente>()
             {
-                new ContaCorrente(3, 123),
-                new ContaCorrente(2, 123),
-                new ContaCorrente(1, 123),
-                new ContaCorrente(9, 123),
-                new ContaCorrente(6, 123)
+                new ContaCorrente(123, 9),
+                new ContaCorrente(123, 1),
+                new ContaCorrente(123, 5),
+                new ContaCorrente(123, 4),
+                new ContaCorrente(123, 6)
             };
 
 
