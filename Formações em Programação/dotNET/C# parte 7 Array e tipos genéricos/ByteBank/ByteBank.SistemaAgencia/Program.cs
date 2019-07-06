@@ -34,11 +34,10 @@ namespace ByteBank.SistemaAgencia
             lista.Adicionar(new ContaCorrente(12987, 342490898));
             lista.Adicionar(new ContaCorrente(12987, 342342342));
 
-            lista.EscreverListaNaTela();
-            lista.Remover(conta);
-            Console.WriteLine("-----------------------------------------------");
-            lista.EscreverListaNaTela();
+            for (int i = 0; i < lista.Tamanho; i++)
+                Console.WriteLine(lista[i]);
 
+            lista.Remover(conta);
             Console.ReadLine();
         }
 
