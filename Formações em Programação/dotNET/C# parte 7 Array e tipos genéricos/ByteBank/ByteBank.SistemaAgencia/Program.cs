@@ -14,15 +14,20 @@ namespace ByteBank.SistemaAgencia
     {
         static void Main(string[] args)
         {
+            Lista<int> idades = new Lista<int>();
+            idades.Adicionar(5);
+            idades.AdicionarVarios(5, 123, 123123, 123123, 4354534, 4654, 234);
 
-
+            Console.ReadLine();
+        }
+        
+        static void TestaListaDeObject()
+        {
             ListaObject idades = new ListaObject();
             idades.AdicionarVarios(1, 2, 3, 4, "teste");
 
             for (int i = 0; i < idades.Tamanho; i++)
                 Console.WriteLine(idades[i]);
-
-            Console.ReadLine();
         }
 
         static void TestaListaDeContaCorrente()
