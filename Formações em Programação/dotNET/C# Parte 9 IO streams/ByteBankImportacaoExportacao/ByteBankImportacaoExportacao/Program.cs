@@ -12,8 +12,7 @@ namespace ByteBankImportacaoExportacao
     { 
         static void Main(string[] args) 
         {
-            EscritaBinaria();
-            LeitorBinario();
+            UsarStreamDeEntrada();
             Console.ReadLine();
         }
     }
