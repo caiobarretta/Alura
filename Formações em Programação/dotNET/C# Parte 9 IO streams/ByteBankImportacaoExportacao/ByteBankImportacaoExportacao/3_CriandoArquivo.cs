@@ -35,5 +35,23 @@ namespace ByteBankImportacaoExportacao
                 escritor.Write("123,123132,0.50,Gustavo Santos");
             }
         }
+
+        static void TestaEscrita()
+        {
+            var testaCaminho = "teste.txt";
+            using (var fluxoDeArquivo = new FileStream(testaCaminho, FileMode.Create))
+            using (var escritor = new StreamWriter(fluxoDeArquivo))
+            {
+                for (int i = 0; i < int.MaxValue; i++)
+                {
+                    escritor.WriteLine($"Linha {i}");
+                    escritor.Flush();
+                    Console.WriteLine($"Essa Linha {i} foi adicionada no arquivo: {testaCaminho}. Tecle enter para continuar");
+                    Console.ReadLine();
+
+                }
+                
+            }
+        }
     }
 }
