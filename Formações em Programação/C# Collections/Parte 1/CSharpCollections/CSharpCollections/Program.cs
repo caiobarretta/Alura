@@ -12,6 +12,25 @@ namespace CSharpCollections
             csharpColecoes.AdicionarAula(new Aula("Trabalhando com Listas", 21));
             ImprimirForEach(csharpColecoes.Aulas);
 
+            //Adicionar 2 Aulas
+            csharpColecoes.AdicionarAula(new Aula("Criando uma Aula", 20));
+            csharpColecoes.AdicionarAula(new Aula("Modelando com coleções", 19));
+
+            //Imprimir
+            ImprimirForEach(csharpColecoes.Aulas);
+
+            //Ordenar Lista de Aulas
+            //csharpColecoes.Aulas.Sort();
+
+            //copiar lista para outra lista
+            var aulasCopiadas = new List<Aula>(csharpColecoes.Aulas);
+            aulasCopiadas.Sort();
+            ImprimirForEach(aulasCopiadas);
+
+            //totalizar o tempo do curso
+            Console.WriteLine($"O tempo total do curso é: {csharpColecoes.TempoTotal} minutos");
+            Console.WriteLine($"O tempo total do curso é: {csharpColecoes.TempoTotalComLinq} minutos");
+            Console.WriteLine(csharpColecoes);
             Console.ReadLine();
         }
 
