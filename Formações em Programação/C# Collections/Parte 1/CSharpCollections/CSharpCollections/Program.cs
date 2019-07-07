@@ -8,65 +8,28 @@ namespace CSharpCollections
     {
         static void Main(string[] args)
         {
-            string aulaIntro = "Introdução à coleções";
-            string aulaModelando = "Modelando Classe Aula";
-            string aulaSets = "Trabalhando com conjuntos";
+            var aulas = new List<Aula>()
+            {
+                new Aula("Introdução à coleções", 20),
+                new Aula("Modelando Classe Aula", 18),
+                new Aula("Trabalhando com conjuntos", 16)
+            };
 
-            //List<string> aulas = new List<string>()
-            //{
-            //    aulaIntro,
-            //    aulaModelando,
-            //    aulaSets
-            //};
-
-            List<string> aulas = new List<string>();
-            aulas.Add(aulaIntro);
-            aulas.Add(aulaModelando);
-            aulas.Add(aulaSets);
+            Imprimir(aulas);
+            ImprimirFor(aulas);
+            ImprimirForEach(aulas);
             ImprimirListForEach(aulas);
 
-            Console.WriteLine($"A primeira Aula é: {aulas[0]}");
-            Console.WriteLine($"A primeira Aula é: {aulas.First()}");
-            Console.WriteLine($"A última Aula é: {aulas[aulas.Count - 1]}");
-            Console.WriteLine($"A última Aula é: {aulas.Last()}");
-            Console.WriteLine("-------------------------------");
-
-            aulas[0] = "Trabalhando com listas";
-            ImprimirFor(aulas);
-
-            Console.WriteLine("A primeira Aula 'Trabalhando' é: {0}", aulas.First(aula => aula.Contains("Trabalhando")));
-            Console.WriteLine("A última Aula 'Trabalhando' é: {0}", aulas.Last(aula => aula.Contains("Trabalhando")));
-            Console.WriteLine("A primeira Aula 'Conclusão' é: {0}", aulas.FirstOrDefault(aula => aula.Contains("Conclusão")));
-            Console.WriteLine("-------------------------------");
-
-            aulas.Reverse();
-            ImprimirForEach(aulas);
-
-            aulas.Reverse();
-            ImprimirForEach(aulas);
-
-            aulas.RemoveAt(aulas.Count - 1);
-            ImprimirForEach(aulas);
-
-            aulas.Add("Conclusão");
-            ImprimirForEach(aulas);
-
             aulas.Sort();
-            ImprimirForEach(aulas);
+            ImprimirListForEach(aulas);
 
-            List<string> copia = aulas.GetRange(aulas.Count - 2, 2);
-            ImprimirForEach(copia);
-
-            List<string> clone = new List<string>(aulas);
-            ImprimirForEach(clone);
-
-            clone.RemoveRange(clone.Count - 2, clone.Count-1);
-            ImprimirForEach(clone);
+            aulas.Sort((este, outro) => este.Tempo.CompareTo(outro.Tempo));
+            ImprimirListForEach(aulas);
 
             Console.ReadLine();
         }
 
-        static void Imprimir(List<string> aulas)
+        static void Imprimir(List<Aula> aulas)
         {
             Console.WriteLine(aulas[0]);
             Console.WriteLine(aulas[1]);
@@ -74,25 +37,24 @@ namespace CSharpCollections
             Console.WriteLine("-------------------------------");
         }
 
-        static void ImprimirFor(List<string> aulas)
+        static void ImprimirFor(List<Aula> aulas)
         {
             for (int i = 0; i < aulas.Count; i++)
                 Console.WriteLine(aulas[i]);
             Console.WriteLine("-------------------------------");
         }
 
-        static void ImprimirForEach(List<string> aulas)
+        static void ImprimirForEach(List<Aula> aulas)
         {
             foreach (var aula in aulas)
                 Console.WriteLine(aula);
             Console.WriteLine("-------------------------------");
         }
 
-        static void ImprimirListForEach(List<string> aulas)
+        static void ImprimirListForEach(List<Aula> aulas)
         {
             aulas.ForEach(aula => { Console.WriteLine(aula); });
             Console.WriteLine("-------------------------------");
         }
-
     }
 }
