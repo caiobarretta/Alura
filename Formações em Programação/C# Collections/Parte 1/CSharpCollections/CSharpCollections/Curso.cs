@@ -13,6 +13,7 @@ namespace CSharpCollections
         private string _instrutor;
         private IList<Aula> _aulas;
         private ISet<Aluno> _alunos;
+        private IDictionary<int, Aluno> dicionarioAlunos;
         public string Nome => _nome;
         public string Instrutor => _instrutor;
         public int TempoTotal
@@ -37,11 +38,13 @@ namespace CSharpCollections
             _instrutor = instrutor;
             _aulas = new List<Aula>();
             _alunos = new HashSet<Aluno>();
+            dicionarioAlunos = new Dictionary<int, Aluno>();
         }
         public void AdicionarAula(Aula aula) => _aulas.Add(aula);
         public void Matricular(Aluno aluno)
         {
             _alunos.Add(aluno);
+            dicionarioAlunos.Add(aluno.NumeroMatricula, aluno);
         }
 
         public override string ToString()
@@ -56,5 +59,10 @@ namespace CSharpCollections
             return _alunos.Contains(aluno);
         }
 
+        public Aluno BuscaMatriculado(int numeroMatricula)
+        {
+            dicionarioAlunos.TryGetValue(numeroMatricula, out Aluno aluno);
+            return aluno;
+        }
     }
 }
