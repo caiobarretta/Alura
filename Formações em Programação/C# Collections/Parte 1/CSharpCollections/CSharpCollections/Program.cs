@@ -55,6 +55,15 @@ namespace CSharpCollections
             Console.WriteLine("Quem é o aluno 5618?");
             Console.WriteLine(csharpColecoes.BuscaMatriculado(5618));
 
+            //adicionar aluno de matrícula igual
+            Aluno fabio = new Aluno("Fabio Gushiken", 5617);
+            //csharpColecoes.Matricular(fabio);
+            //e se quisermos trocar o aluno que tem a mesma chave?
+            csharpColecoes.SubstituirAluno(fabio);
+            Console.WriteLine("Quem é o aluno com matrícula 5617?");
+            Console.WriteLine(csharpColecoes.BuscaMatriculado(5617));
+
+
             Console.ReadLine();
         }
 

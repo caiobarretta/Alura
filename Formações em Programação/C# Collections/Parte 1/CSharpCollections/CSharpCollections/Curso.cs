@@ -64,5 +64,11 @@ namespace CSharpCollections
             dicionarioAlunos.TryGetValue(numeroMatricula, out Aluno aluno);
             return aluno;
         }
+
+        public void SubstituirAluno(Aluno aluno)
+        {
+            if (BuscaMatriculado(aluno.NumeroMatricula) != null)
+                dicionarioAlunos[aluno.NumeroMatricula] = aluno;
+        }
     }
 }
