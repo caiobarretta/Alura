@@ -12,9 +12,9 @@ namespace CSharpCollections
         private string _nome;
         private string _instrutor;
         private IList<Aula> _aulas;
+        private ISet<Aluno> _alunos;
         public string Nome => _nome;
         public string Instrutor => _instrutor;
-
         public int TempoTotal
         {
             get
@@ -25,27 +25,24 @@ namespace CSharpCollections
                 return total;
             }
         }
-
-        public int TempoTotalComLinq
-        {
-            get
-            {
-                //LINQ = Language Integrated Query
-                //Consulta Integrada à Linguagem
-                return Aulas.Sum(aula => aula.Tempo);
-            }
-        }
-
+        //LINQ = Language Integrated Query
+        //Consulta Integrada à Linguagem
+        public int TempoTotalComLinq => Aulas.Sum(aula => aula.Tempo);
         public IList<Aula> Aulas => new ReadOnlyCollection<Aula>(_aulas);
+        public IList<Aluno> Alunos => new ReadOnlyCollection<Aluno>(_alunos.ToList());
 
         public Curso(string nome, string instrutor)
         {
             _nome = nome;
             _instrutor = instrutor;
             _aulas = new List<Aula>();
+            _alunos = new HashSet<Aluno>();
         }
-
         public void AdicionarAula(Aula aula) => _aulas.Add(aula);
+        public void Matricular(Aluno aluno)
+        {
+            _alunos.Add(aluno);
+        }
 
         public override string ToString()
         {

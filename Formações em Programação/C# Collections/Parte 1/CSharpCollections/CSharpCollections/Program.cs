@@ -8,44 +8,21 @@ namespace CSharpCollections
     {
         static void Main(string[] args)
         {
-            //SETS = Conjuntos
+            var csharpColecoes = new Curso("C# Collections", "Marcelo Oliveira");
+            csharpColecoes.AdicionarAula(new Aula("Trabalhando com Listas", 21));
+            csharpColecoes.AdicionarAula(new Aula("Criando uma Aula", 20));
+            csharpColecoes.AdicionarAula(new Aula("Modelando com coleções", 24));
 
-            //Duas propriedades do Set
-            //1. não permite duplicidade
-            //2. os elementos não são mantidos em ordem específica
+            Aluno a1 = new Aluno("Vanessa Tonini", 34672);
+            Aluno a2 = new Aluno("Ana Losnak", 5617);
+            Aluno a3 = new Aluno("Rafael Nercessian", 17645);
 
-            ISet<string> alunos = new HashSet<string>();
-            alunos.Add("Vanessa Tonini");
-            alunos.Add("Ana Losnak");
-            alunos.Add("Rafael Nercessian");
-            Console.WriteLine(string.Join(Environment.NewLine, alunos));
-            Console.WriteLine("-------------------------------");
+            csharpColecoes.Matricular(a1);
+            csharpColecoes.Matricular(a2);
+            csharpColecoes.Matricular(a3);
 
-            alunos.Add("Priscila Stuani");
-            alunos.Add("Rafael Rollo");
-            alunos.Add("Fabio Gushiken");
-            Console.WriteLine(string.Join(Environment.NewLine, alunos));
-            Console.WriteLine("-------------------------------");
-
-            alunos.Remove("Ana Losnak");
-            alunos.Add("Marcelo Oliveira");
-            Console.WriteLine(string.Join(Environment.NewLine, alunos));
-            Console.WriteLine("-------------------------------");
-
-            //adicionando elemento duplicado
-            alunos.Add("Fabio Gushiken");
-            Console.WriteLine(string.Join(Environment.NewLine, alunos));
-            Console.WriteLine("-------------------------------");
-
-            //ordenando: sort
-            //alunos.Sort();
-            //copiando: alunosEmLista
-            List<string> alunosEmLista = new List<string>(alunos);
-            //ordenando cópia
-            alunosEmLista.Sort();
-            //imprimindo cópia
-            Console.WriteLine(string.Join(Environment.NewLine, alunosEmLista));
-            Console.WriteLine("-------------------------------");
+            foreach (var aluno in csharpColecoes.Alunos)
+                Console.WriteLine(aluno);
 
             Console.ReadLine();
         }
