@@ -24,6 +24,21 @@ namespace CSharpCollections
             foreach (var aluno in csharpColecoes.Alunos)
                 Console.WriteLine(aluno);
 
+            Console.WriteLine($"O aluno {a1.Nome} está matriculado?");
+            Console.WriteLine(csharpColecoes.EstaMatriculado(a1));
+
+            Aluno tonini = new Aluno("Vanessa Tonini", 34672);
+            Console.WriteLine($"O aluno {a1.Nome} está matriculado?");
+            Console.WriteLine(csharpColecoes.EstaMatriculado(tonini));
+
+            //mas a1 == a Tonini?
+            Console.WriteLine("a1 == a Tonini?");
+            Console.WriteLine(a1 == tonini);
+
+            //o que ocorreu? a1 é equals a Tonini?
+            Console.WriteLine("a1 é equals a Tonini?");
+            Console.WriteLine(a1.Equals(tonini));
+
             Console.ReadLine();
         }
 

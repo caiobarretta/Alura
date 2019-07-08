@@ -51,5 +51,10 @@ namespace CSharpCollections
             return curso;
         }
 
+        public bool EstaMatriculado(Aluno aluno)
+        {
+            return _alunos.Contains(aluno);
+        }
+
     }
 }
