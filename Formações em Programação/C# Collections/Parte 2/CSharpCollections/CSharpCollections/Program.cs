@@ -8,44 +8,31 @@ namespace CSharpCollections
     {
         static void Main(string[] args)
         {
-            List<Mes> meses = new List<Mes>
-            {
-                new Mes("Janeiro", 31),
-                new Mes("Fevereiro", 28),
-                new Mes("Março", 31),
-                new Mes("Abril", 30),
-                new Mes("Maio", 31),
-                new Mes("Junho", 30),
-                new Mes("Julho", 31),
-                new Mes("Agosto", 31),
-                new Mes("Setembro", 30),
-                new Mes("Outubro", 31),
-                new Mes("Novembro", 30),
-                new Mes("Dezembro", 31)
-            };
+            string[] seq1 = { "janeiro", "fevereiro", "março" };
+            string[] seq2 = { "fevereiro", "MARÇO", "abril" };
 
-            //Pegar o primeiro trimestre
-            foreach (var item in meses.Take(3))
+            Console.WriteLine("Concatenando duas sequências");
+            foreach (var item in seq1.Concat(seq2))
                 Console.WriteLine(item);
 
             Console.Clear();
-            //Pegar os meses depois do primeiro trimestre
-            foreach (var item in meses.Skip(3))
+            Console.WriteLine("União de duas sequências");
+            foreach (var item in seq1.Union(seq2))
                 Console.WriteLine(item);
 
             Console.Clear();
-            //Pegar os meses do terceiro trimestre
-            foreach (var item in meses.Skip(6).Take(3))
+            Console.WriteLine("União de duas sequências com comparador");
+            foreach (var item in seq1.Union(seq2, StringComparer.CurrentCultureIgnoreCase))
                 Console.WriteLine(item);
 
             Console.Clear();
-            //pegar os meses até que até que o mês comece com a letra 'S'
-            foreach (var item in meses.TakeWhile(m => !m.Nome.ToUpper().StartsWith("S")))
+            Console.WriteLine("Interseção de duas sequências");
+            foreach (var item in seq1.Intersect(seq2))
                 Console.WriteLine(item);
 
             Console.Clear();
-            //Pular os meses até que o mês comece com a letra 'S'
-            foreach (var item in meses.SkipWhile(m => !m.Nome.ToUpper().StartsWith("S")))
+            Console.WriteLine("Exceto: elementos de seq1 que não estão na seq2");
+            foreach (var item in seq1.Except(seq2))
                 Console.WriteLine(item);
 
             Console.ReadLine();
