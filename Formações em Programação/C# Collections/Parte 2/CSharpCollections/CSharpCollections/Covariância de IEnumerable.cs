@@ -6,7 +6,7 @@ namespace CSharpCollections
 {
     partial class Program
     {
-        static void Main(string[] args)
+        static void CovarianciaDeIEnumerable(string[] args)
         {
             Console.WriteLine("string para object");
             string titulo = "meses";
