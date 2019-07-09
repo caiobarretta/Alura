@@ -8,9 +8,6 @@ namespace CSharpCollections
     {
         static void Main(string[] args)
         {
-            //Problema: obter os nomes dos meses do ano
-            //que tem 31 dias, em maiúsculo e em ordem alfabética
-
             List<Mes> meses = new List<Mes>
             {
                 new Mes("Janeiro", 31),
@@ -27,17 +24,28 @@ namespace CSharpCollections
                 new Mes("Dezembro", 31)
             };
 
-            //meses.Sort();
-            //foreach (var mes in meses)
-            //{
-            //    if (mes.Dias == 31)
-            //        Console.WriteLine(mes.Nome.ToUpper());
-            //}
+            //Pegar o primeiro trimestre
+            foreach (var item in meses.Take(3))
+                Console.WriteLine(item);
 
-            //LINQ = CONSULTA INTEGRADA À LINGUAGEM
-            IEnumerable<Mes> consulta = meses.Where(m => m.Dias == 31).OrderBy(m => m.Nome).Select(m => new Mes(m.Nome.ToUpper(), m.Dias));
+            Console.Clear();
+            //Pegar os meses depois do primeiro trimestre
+            foreach (var item in meses.Skip(3))
+                Console.WriteLine(item);
 
-            foreach (var item in consulta)
+            Console.Clear();
+            //Pegar os meses do terceiro trimestre
+            foreach (var item in meses.Skip(6).Take(3))
+                Console.WriteLine(item);
+
+            Console.Clear();
+            //pegar os meses até que até que o mês comece com a letra 'S'
+            foreach (var item in meses.TakeWhile(m => !m.Nome.ToUpper().StartsWith("S")))
+                Console.WriteLine(item);
+
+            Console.Clear();
+            //Pular os meses até que o mês comece com a letra 'S'
+            foreach (var item in meses.SkipWhile(m => !m.Nome.ToUpper().StartsWith("S")))
                 Console.WriteLine(item);
 
             Console.ReadLine();
