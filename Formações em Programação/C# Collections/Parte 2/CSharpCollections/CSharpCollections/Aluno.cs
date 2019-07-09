@@ -28,7 +28,7 @@ namespace CSharpCollections
 
         public override string ToString()
         {
-            return $"Aluno: {Nome} , Matricula: {NumeroMatricula}";
+            return $"Aluno: {Nome}, Matricula: {NumeroMatricula}";
         }
     }
 }

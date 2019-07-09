@@ -3,29 +3,11 @@ using System.Collections.Generic;
 
 namespace CSharpCollections
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
-            //Vamos criar um dicionário de aluno
-            IDictionary<string, Aluno> alunos = new Dictionary<string, Aluno>();
-            //VT, Vanessa, 34672
-            alunos.Add("VT", new Aluno("Vanessa", 34672));
-            //AL, Ana, 5617
-            alunos.Add("AL", new Aluno("Ana", 5617));
-            //RN, Rafael, 17645
-            alunos.Add("RN", new Aluno("Rafael", 17645));
-            //WM, Wanderson, 11287
-            alunos.Add("WM", new Aluno("Wanderson", 11287));
-            Imprimir(alunos);
-
-            //vamos remover: AL
-            alunos.Remove("AL");
-            //vamos adicionar: MO
-            alunos.Add("MO", new Aluno("Marcelo", 12345));
-            Imprimir(alunos);
-
-            IDictionary<string, Aluno> sorted = new SortedList<string, Aluno>();
+            IDictionary<string, Aluno> sorted = new SortedDictionary<string, Aluno>();
             sorted.Add("VT", new Aluno("Vanessa", 34672));
             sorted.Add("AL", new Aluno("Ana", 5617));
             sorted.Add("RN", new Aluno("Rafael", 17645));
@@ -33,16 +15,6 @@ namespace CSharpCollections
             Imprimir(sorted);
 
             Console.ReadLine();
-        }
-
-        static void Imprimir(IDictionary<string, Aluno> dicionario)
-        {
-            Console.WriteLine("-------------------------------");
-            foreach (var item in dicionario)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("-------------------------------");
         }
     }
 }
