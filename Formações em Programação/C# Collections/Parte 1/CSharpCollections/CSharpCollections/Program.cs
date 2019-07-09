@@ -8,61 +8,35 @@ namespace CSharpCollections
     {
         static void Main(string[] args)
         {
-            var csharpColecoes = new Curso("C# Collections", "Marcelo Oliveira");
-            csharpColecoes.AdicionarAula(new Aula("Trabalhando com Listas", 21));
-            csharpColecoes.AdicionarAula(new Aula("Criando uma Aula", 20));
-            csharpColecoes.AdicionarAula(new Aula("Modelando com coleções", 24));
+            LinkedList<string> dias = new LinkedList<string>();
+            var d4 = dias.AddFirst("quarta");
+            Console.WriteLine("d4.Value: {0}", d4.Value);
+            Console.WriteLine("-------------------------------");
 
-            Aluno a1 = new Aluno("Vanessa Tonini", 34672);
-            Aluno a2 = new Aluno("Ana Losnak", 5617);
-            Aluno a3 = new Aluno("Rafael Nercessian", 17645);
+            var d2 = dias.AddBefore(d4, "segunda");
 
-            csharpColecoes.Matricular(a1);
-            csharpColecoes.Matricular(a2);
-            csharpColecoes.Matricular(a3);
+            var d3 = dias.AddAfter(d2, "terça");
 
-            foreach (var aluno in csharpColecoes.Alunos)
-                Console.WriteLine(aluno);
+            var d6 = dias.AddAfter(d4, "sexta");
 
-            Console.WriteLine($"O aluno {a1.Nome} está matriculado?");
-            Console.WriteLine(csharpColecoes.EstaMatriculado(a1));
+            var d7 = dias.AddAfter(d6, "sábado");
 
-            Aluno tonini = new Aluno("Vanessa Tonini", 34672);
-            Console.WriteLine($"O aluno {a1.Nome} está matriculado?");
-            Console.WriteLine(csharpColecoes.EstaMatriculado(tonini));
+            var d5 = dias.AddBefore(d6, "quinta");
 
-            //mas a1 == a Tonini?
-            Console.WriteLine("a1 == a Tonini?");
-            Console.WriteLine(a1 == tonini);
+            var d1 = dias.AddBefore(d2, "domingo");
 
-            //o que ocorreu? a1 é equals a Tonini?
-            Console.WriteLine("a1 é equals a Tonini?");
-            Console.WriteLine(a1.Equals(tonini));
+            foreach (var dia in dias)
+                Console.WriteLine(dia);
+            Console.WriteLine("-------------------------------");
 
-            //limpando o console
-            Console.Clear();
+            var quarta = dias.Find("quarta");
+            Console.WriteLine(quarta.Value);
+            Console.WriteLine("-------------------------------");
 
-            //já temos método para saber se o aluno está matriculado.
-            //mas agora precisamos buscar aluno por número de matrícula
-
-            //pergunta: "Quem é o aluno com matrícula 5617?"
-            Console.WriteLine("Quem é o aluno com matrícula 5617?");
-            //implementando Curso.BuscaMatriculado
-            Aluno aluno5617 = csharpColecoes.BuscaMatriculado(5617);
-            Console.WriteLine(aluno5617);
-
-            //quem é o aluno 5618?
-            Console.WriteLine("Quem é o aluno 5618?");
-            Console.WriteLine(csharpColecoes.BuscaMatriculado(5618));
-
-            //adicionar aluno de matrícula igual
-            Aluno fabio = new Aluno("Fabio Gushiken", 5617);
-            //csharpColecoes.Matricular(fabio);
-            //e se quisermos trocar o aluno que tem a mesma chave?
-            csharpColecoes.SubstituirAluno(fabio);
-            Console.WriteLine("Quem é o aluno com matrícula 5617?");
-            Console.WriteLine(csharpColecoes.BuscaMatriculado(5617));
-
+            dias.Remove("quarta");
+            foreach (var dia in dias)
+                Console.WriteLine(dia);
+            Console.WriteLine("-------------------------------");
 
             Console.ReadLine();
         }
