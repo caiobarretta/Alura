@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpCollections
 {
@@ -26,12 +27,18 @@ namespace CSharpCollections
                 new Mes("Dezembro", 31)
             };
 
-            meses.Sort();
-            foreach (var mes in meses)
-            {
-                if (mes.Dias == 31)
-                    Console.WriteLine(mes.Nome.ToUpper());
-            }
+            //meses.Sort();
+            //foreach (var mes in meses)
+            //{
+            //    if (mes.Dias == 31)
+            //        Console.WriteLine(mes.Nome.ToUpper());
+            //}
+
+            //LINQ = CONSULTA INTEGRADA À LINGUAGEM
+            IEnumerable<Mes> consulta = meses.Where(m => m.Dias == 31).OrderBy(m => m.Nome).Select(m => new Mes(m.Nome.ToUpper(), m.Dias));
+
+            foreach (var item in consulta)
+                Console.WriteLine(item);
 
             Console.ReadLine();
         }

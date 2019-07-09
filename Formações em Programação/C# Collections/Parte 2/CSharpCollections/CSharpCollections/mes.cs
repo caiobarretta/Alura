@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpCollections
 {
-    public class Mes : IComparable
+    public class Mes /*: IComparable*/
     {
         public string Nome { get; private set; }
         public int Dias { get; private set; }
@@ -19,12 +19,12 @@ namespace CSharpCollections
 
         public override string ToString() => $"Nome: {Nome}, Dias: {Dias}";
 
-        public int CompareTo(object outro)
-        {
-            if (outro as Mes == null)
-                return -1;
+        //public int CompareTo(object outro)
+        //{
+        //    if (outro as Mes == null)
+        //        return -1;
 
-            return Nome.CompareTo((outro as Mes).Nome);
-        }
+        //    return Nome.CompareTo((outro as Mes).Nome);
+        //}
     }
 }
