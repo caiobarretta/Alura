@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.agenda.dao.AlunoDAO;
+import com.example.agenda.modelo.Aluno;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -17,9 +22,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] alunos = {"Daniel", "Ronaldo", "Jeferson", "Felipe", "Ronaldo", "Jeferson", "Felipe","Daniel", "Ronaldo", "Jeferson", "Felipe", "Ronaldo", "Jeferson", "Felipe"};
+        AlunoDAO dao = new AlunoDAO(this);
+        List<Aluno> Alunos = dao.buscaAlunos();
+        dao.close();
+
         ListView lstAlunos = findViewById(R.id.lstAlunos);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alunos);
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, Alunos);
         lstAlunos.setAdapter(adapter);
 
         Button novoAluno = findViewById(R.id.novo_aluno);
