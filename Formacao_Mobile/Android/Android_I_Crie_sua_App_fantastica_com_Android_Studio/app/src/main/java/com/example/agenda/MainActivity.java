@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
         lstAlunos = findViewById(R.id.lstAlunos);
 
+        lstAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
+                Aluno aluno =  (Aluno)lstAlunos.getItemAtPosition(position);
+                Toast.makeText(MainActivity.this, "Aluno: " + aluno.getNome(), Toast.LENGTH_SHORT).show();
+            }
+        });
         Button novoAluno = findViewById(R.id.novo_aluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
