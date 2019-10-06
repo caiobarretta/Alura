@@ -22,13 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AlunoDAO dao = new AlunoDAO(this);
-        List<Aluno> Alunos = dao.buscaAlunos();
-        dao.close();
-
-        ListView lstAlunos = findViewById(R.id.lstAlunos);
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, Alunos);
-        lstAlunos.setAdapter(adapter);
 
         Button novoAluno = findViewById(R.id.novo_aluno);
         novoAluno.setOnClickListener(new View.OnClickListener() {
@@ -38,5 +31,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregaLista();
+    }
+
+    private void carregaLista() {
+        AlunoDAO dao = new AlunoDAO(this);
+        List<Aluno> Alunos = dao.buscaAlunos();
+        dao.close();
+
+        ListView lstAlunos = findViewById(R.id.lstAlunos);
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, Alunos);
+        lstAlunos.setAdapter(adapter);
     }
 }
