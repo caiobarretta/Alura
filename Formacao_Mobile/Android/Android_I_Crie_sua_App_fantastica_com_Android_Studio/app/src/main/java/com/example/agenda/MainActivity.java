@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] alunos = {"Daniel", "Ronaldo", "Jeferson", "Felipe"};
+        String[] alunos = {"Daniel", "Ronaldo", "Jeferson", "Felipe", "Ronaldo", "Jeferson", "Felipe","Daniel", "Ronaldo", "Jeferson", "Felipe", "Ronaldo", "Jeferson", "Felipe"};
         ListView lstAlunos = findViewById(R.id.lstAlunos);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alunos);
         lstAlunos.setAdapter(adapter);
