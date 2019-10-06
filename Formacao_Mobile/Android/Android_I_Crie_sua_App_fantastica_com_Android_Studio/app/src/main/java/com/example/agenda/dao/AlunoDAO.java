@@ -17,12 +17,12 @@ import java.util.List;
 public class AlunoDAO extends SQLiteOpenHelper {
 
     public AlunoDAO(@Nullable Context context) {
-        super(context, "Agenda", null, 1);
+        super(context, "Agenda", null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE Alunos ( id INTERGER PRIMARY KEY, nome TEXT NOT NULL, endereco TEXT, telefone TEXT, site TEXT, nota REAL);";
+        String sql = "CREATE TABLE Alunos ( id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, endereco TEXT, telefone TEXT, site TEXT, nota REAL);";
         sqLiteDatabase.execSQL(sql);
     }
 
