@@ -1,9 +1,13 @@
 package com.example.agenda;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,15 +18,27 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+    }
 
-        Button botaoSalvar = findViewById(R.id.formulario_salvar);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-        botaoSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(FormularioActivity.this, "Botão Clicado!", Toast.LENGTH_SHORT).show();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_formulario, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_formulario_ok:
+                Toast.makeText(FormularioActivity.this, "Aluno salvo!", Toast.LENGTH_SHORT).show();
                 finish();
-            }
-        });
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
