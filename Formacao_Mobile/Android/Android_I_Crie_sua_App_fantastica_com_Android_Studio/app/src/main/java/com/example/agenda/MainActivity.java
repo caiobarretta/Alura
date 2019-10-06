@@ -35,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
                 Aluno aluno =  (Aluno)lstAlunos.getItemAtPosition(position);
-                Toast.makeText(MainActivity.this, "Aluno: " + aluno.getNome(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, FormularioActivity.class);
+                intent.putExtra("aluno", aluno);
+                startActivity(intent);
             }
         });
         Button novoAluno = findViewById(R.id.novo_aluno);
