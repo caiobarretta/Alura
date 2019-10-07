@@ -2,9 +2,12 @@ package com.example.agenda;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.agenda.dao.AlunoDAO;
 import com.example.agenda.modelo.Aluno;
+
+import java.io.File;
 
 public class FormularioActivity extends AppCompatActivity {
 
@@ -31,6 +36,20 @@ public class FormularioActivity extends AppCompatActivity {
         Aluno aluno = (Aluno)intent.getSerializableExtra("aluno");
 
         if(aluno != null) helper.preencheFormulario(aluno);
+
+        Button botaoFoto = findViewById(R.id.formulario_botao_foto);
+
+        botaoFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                String caminhoFoto = getExternalFilesDir(null) + "/"+ System.currentTimeMillis() +".jpg";
+                File arquivoFoto = new File(caminhoFoto);
+                Uri uriFoto = FileProvider.getUriForFile(FormularioActivity.this, "com.example.agenda.fileprovider", arquivoFoto);
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, uriFoto);
+                startActivity(intentCamera);
+            }
+        });
     }
 
     @Override
