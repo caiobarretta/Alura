@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agenda.adapter.AlunosAdapter;
 import com.example.agenda.dao.AlunoDAO;
 import com.example.agenda.modelo.Aluno;
 
@@ -65,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void carregaLista() {
         AlunoDAO dao = new AlunoDAO(this);
-        List<Aluno> Alunos = dao.buscaAlunos();
+        List<Aluno> alunos = dao.buscaAlunos();
         dao.close();
 
-        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, Alunos);
+        AlunosAdapter adapter = new AlunosAdapter(this, alunos);
         lstAlunos.setAdapter(adapter);
     }
 
