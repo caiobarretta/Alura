@@ -17,20 +17,32 @@ import java.util.List;
 public class AlunoDAO extends SQLiteOpenHelper {
 
     public AlunoDAO(@Nullable Context context) {
-        super(context, "Agenda", null, 3);
+        super(context, "Agenda", null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql = "CREATE TABLE Alunos ( id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, endereco TEXT, telefone TEXT, site TEXT, nota REAL);";
+        String sql = "CREATE TABLE Alunos ( " +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "nome TEXT NOT NULL, " +
+                "endereco TEXT, " +
+                "telefone TEXT, " +
+                "site TEXT, " +
+                "nota REAL, " +
+                "caminhoFoto TEXT);";
         sqLiteDatabase.execSQL(sql);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        String sql = "DROP TABLE IF EXISTS Alunos";
-        sqLiteDatabase.execSQL(sql);
-        onCreate(sqLiteDatabase);
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        String sql = "";
+        switch (oldVersion){
+
+            case 1:
+                sql = "AlTER TABLE Alunos ADD COLUMN caminhoFoto TEXT";
+                sqLiteDatabase.execSQL(sql);
+        }
+        //onCreate(sqLiteDatabase);
     }
 
     public void insere(Aluno aluno) {
@@ -54,6 +66,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
             Aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
             Aluno.setSite(c.getString(c.getColumnIndex("site")));
             Aluno.setNota(c.getDouble(c.getColumnIndex("nota")));
+            Aluno.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
             Alunos.add(Aluno);
         }
         c.close();
@@ -81,6 +94,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
         dados.put("telefone", aluno.getTelefone());
         dados.put("site", aluno.getSite());
         dados.put("nota", aluno.getNota());
+        dados.put("caminhoFoto", aluno.getCaminhoFoto());
         return dados;
     }
 }
