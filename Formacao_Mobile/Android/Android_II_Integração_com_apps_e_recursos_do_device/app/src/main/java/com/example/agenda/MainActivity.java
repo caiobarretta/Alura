@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Browser;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agenda.adapter.AlunosAdapter;
+import com.example.agenda.converter.AlunoConverter;
 import com.example.agenda.dao.AlunoDAO;
 import com.example.agenda.modelo.Aluno;
 
@@ -62,6 +64,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         carregaLista();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_enviar_notas:
+                AlunoDAO dao = new AlunoDAO(this);
+                List<Aluno> alunos = dao.buscaAlunos();
+
+                AlunoConverter conversor = new AlunoConverter();
+                String json = conversor.converteParaJSON(alunos);
+
+                Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
     }
 
     private void carregaLista() {
