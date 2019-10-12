@@ -2,6 +2,8 @@ package com.example.agenda;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +37,10 @@ public class ProvasActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Prova prova = (Prova) parent.getItemAtPosition(position);
                 Toast.makeText(ProvasActivity.this, "Clicou na prova de: " + prova.getMateria(), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(ProvasActivity.this, DetalhesProvaActivity.class);
+                intent.putExtra("prova", prova);
+                startActivity(intent);
             }
         });
     }
