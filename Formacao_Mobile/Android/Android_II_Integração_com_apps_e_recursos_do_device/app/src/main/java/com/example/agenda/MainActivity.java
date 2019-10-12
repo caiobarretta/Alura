@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Browser;
@@ -149,5 +150,25 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "ORIENTATION_LANDSCAPE", Toast.LENGTH_LONG).show();
+            createHorizontalalLayout();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "ORIENTATION_PORTRAIT", Toast.LENGTH_LONG).show();
+            createVerticalLayout();
+        }
+    }
+
+    private void createVerticalLayout() {
+        setContentView(R.layout.activity_main);
+    }
+
+    private void createHorizontalalLayout() {
+        setContentView(R.layout.activity_main);
     }
 }
