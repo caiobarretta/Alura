@@ -1,4 +1,4 @@
-package com.example.agenda;
+package com.example.agenda.web;
 
 import java.io.IOException;
 import java.io.PrintStream;

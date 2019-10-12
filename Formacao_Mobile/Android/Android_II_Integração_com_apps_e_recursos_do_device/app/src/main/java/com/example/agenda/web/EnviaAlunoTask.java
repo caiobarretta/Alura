@@ -1,4 +1,4 @@
-package com.example.agenda;
+package com.example.agenda.web;
 
 import android.app.ProgressDialog;
 import android.content.Context;

@@ -9,22 +9,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Browser;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.agenda.adapter.AlunosAdapter;
-import com.example.agenda.converter.AlunoConverter;
 import com.example.agenda.dao.AlunoDAO;
 import com.example.agenda.modelo.Aluno;
+import com.example.agenda.web.EnviaAlunoTask;
 
 import java.util.List;
 
@@ -77,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.menu_enviar_notas:
                 new EnviaAlunoTask(this).execute();
+                break;
+            case R.id.menu_baixar_provas:
+                startActivity(new Intent(this, ProvasActivity.class));
                 break;
         }
         return true;
