@@ -82,7 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 AlunoConverter conversor = new AlunoConverter();
                 String json = conversor.converteParaJSON(alunos);
 
-                Toast.makeText(this, json, Toast.LENGTH_SHORT).show();
+                WebClient client = new WebClient();
+                String resposta = client.post(json);
+
+                Toast.makeText(this, resposta, Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
