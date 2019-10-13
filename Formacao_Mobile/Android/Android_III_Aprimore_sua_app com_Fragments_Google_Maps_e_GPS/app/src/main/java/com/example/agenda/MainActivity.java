@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ProvasActivity.class));
                 break;
             case R.id.menu_mapa:
-                startActivity(new Intent(this, MapsActivity.class));
+                startActivity(new Intent(this, MapaActivity.class));
                 break;
         }
         return true;
