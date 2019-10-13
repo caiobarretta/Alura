@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.agenda.modelo.Prova;
 
@@ -40,9 +43,9 @@ public class ListaProvaFragment extends Fragment {
                 Prova prova = (Prova) parent.getItemAtPosition(position);
                 Toast.makeText(getContext(), "Clicou na prova de: " + prova.getMateria(), Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(getContext(), DetalhesProvaActivity.class);
-                intent.putExtra("prova", prova);
-                startActivity(intent);
+                ProvasActivity provasActivity = (ProvasActivity) getActivity();
+                provasActivity.selecionaProva(prova);
+
             }
         });
         return view;
