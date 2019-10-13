@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Alura Viagens</string>
     <string name="imagem_pacote">Imagem Pacote</string>
+    <string name="TITULO_APPBAR">Pacotes</string>
 </resources>

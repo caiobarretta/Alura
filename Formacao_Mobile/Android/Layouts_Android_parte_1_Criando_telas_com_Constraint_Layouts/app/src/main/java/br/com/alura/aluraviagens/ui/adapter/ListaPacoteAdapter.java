@@ -8,7 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import br.com.alura.aluraviagens.R;
 import br.com.alura.aluraviagens.model.Pacote;
@@ -16,7 +19,7 @@ import br.com.alura.aluraviagens.model.Pacote;
 public class ListaPacoteAdapter extends BaseAdapter {
 
     private final List<Pacote> pacotes;
-    private Context context;
+    private final Context context;
 
     public ListaPacoteAdapter(List<Pacote> pacotes, Context context){
         this.pacotes = pacotes;
@@ -44,16 +47,38 @@ public class ListaPacoteAdapter extends BaseAdapter {
 
         Pacote pacote = pacotes.get(posicao);
 
-        ((TextView)viewInflate.findViewById(R.id.item_pacote_local)).setText(pacote.getLocal());
+        configuraTextView(viewInflate, R.id.item_pacote_local, pacote.getLocal());
+        configuraImageView(viewInflate, pacote);
+        mostraDia(viewInflate, pacote);
+        mostraPreco(viewInflate, pacote);
 
+        return viewInflate;
+    }
+
+    private void mostraPreco(View viewInflate, Pacote pacote) {
+        NumberFormat format = DecimalFormat.getCurrencyInstance(new Locale("pt", "br"));
+        String moeda = format.format(pacote.getPreco()).replace("R$", "R$ ");
+        configuraTextView(viewInflate, R.id.item_pacote_preco, moeda);
+    }
+
+    private void mostraDia(View viewInflate, Pacote pacote) {
+        int qtdDias = pacote.getDias();
+        String diaTexto = "";
+        if(qtdDias > 1)
+            diaTexto = qtdDias + " dias";
+        else
+            diaTexto = qtdDias + " dia";
+        configuraTextView(viewInflate, R.id.item_pacote_dias, diaTexto);
+    }
+
+    private void configuraImageView(View viewInflate, Pacote pacote) {
         ((ImageView)viewInflate.findViewById(R.id.item_pacote_image))
                 .setImageDrawable(context.getResources()
                     .getDrawable(context.getResources()
                         .getIdentifier(pacote.getImagem(), "drawable", context.getPackageName())));
+    }
 
-        ((TextView)viewInflate.findViewById(R.id.item_pacote_dias)).setText(pacote.getDias() + " dias");
-        ((TextView)viewInflate.findViewById(R.id.item_pacote_preco)).setText("R$ " + pacote.getPreco());
-
-        return viewInflate;
+    private void configuraTextView(View viewInflate, int p, String local) {
+        ((TextView) viewInflate.findViewById(p)).setText(local);
     }
 }
