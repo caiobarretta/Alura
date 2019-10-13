@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -39,6 +41,19 @@ public class ListaPacoteAdapter extends BaseAdapter {
     @Override
     public View getView(int posicao, View view, ViewGroup parent) {
         View viewInflate = LayoutInflater.from(context).inflate(R.layout.item_pacote, parent, false);
+
+        Pacote pacote = pacotes.get(posicao);
+
+        ((TextView)viewInflate.findViewById(R.id.item_pacote_local)).setText(pacote.getLocal());
+
+        ((ImageView)viewInflate.findViewById(R.id.item_pacote_image))
+                .setImageDrawable(context.getResources()
+                    .getDrawable(context.getResources()
+                        .getIdentifier(pacote.getImagem(), "drawable", context.getPackageName())));
+
+        ((TextView)viewInflate.findViewById(R.id.item_pacote_dias)).setText(pacote.getDias() + " dias");
+        ((TextView)viewInflate.findViewById(R.id.item_pacote_preco)).setText("R$ " + pacote.getPreco());
+
         return viewInflate;
     }
 }
