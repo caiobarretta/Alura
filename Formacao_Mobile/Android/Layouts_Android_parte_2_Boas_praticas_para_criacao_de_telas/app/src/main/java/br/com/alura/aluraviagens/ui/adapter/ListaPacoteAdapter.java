@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.alura.aluraviagens.util.DiasUtils;
+import br.com.alura.aluraviagens.util.DiasUtil;
 import br.com.alura.aluraviagens.util.MoedaUtil;
 import br.com.alura.aluraviagens.R;
 import br.com.alura.aluraviagens.util.ResourceUtil;
@@ -69,7 +69,7 @@ public class ListaPacoteAdapter extends BaseAdapter {
 
     private void mostraDia(View viewInflate, Pacote pacote) {
         int qtdDias = pacote.getDias();
-        String diaTexto = DiasUtils.formataEmTexto(qtdDias);
+        String diaTexto = DiasUtil.formataEmTexto(qtdDias);
         configuraTextView(viewInflate, R.id.item_pacote_dias, diaTexto);
     }
 

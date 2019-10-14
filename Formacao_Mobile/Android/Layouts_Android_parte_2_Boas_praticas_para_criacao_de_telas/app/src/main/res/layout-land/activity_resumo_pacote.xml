@@ -24,7 +24,7 @@
         android:id="@+id/resumo_pacote_local"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="@id/resumo_pacote_imagem"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/resumo_pacote_local"
         app:layout_constraintTop_toBottomOf="@id/resumo_pacote_local"
         tools:text="@sample/pacote.json/dias"/>
@@ -45,7 +45,7 @@
         android:id="@+id/resumo_pacote_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@id/resumo_pacote_dias"
         app:layout_constraintTop_toBottomOf="@id/resumo_pacote_dias"
@@ -55,7 +55,7 @@
         android:id="@+id/resumo_pacote_preco_final"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@id/resumo_pacote_preco"
         app:layout_constraintBottom_toTopOf="@id/resumo_pacote_preco"
         android:text="Preço Final:"/>
@@ -64,13 +64,13 @@
         android:id="@+id/resumo_pacote_preco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:layout_marginRight="8dp"
         android:textColor="@android:color/holo_green_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/resumo_pacote_data"
         tools:text="@sample/pacote.json/preco"/>
-    
+
     <Button
         android:id="@+id/resumo_pacote_botao_pagamento"
         android:layout_width="0dp"

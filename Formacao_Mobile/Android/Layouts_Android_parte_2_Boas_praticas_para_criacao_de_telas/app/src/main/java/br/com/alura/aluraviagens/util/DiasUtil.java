@@ -1,6 +1,6 @@
 package br.com.alura.aluraviagens.util;
 
-public class DiasUtils {
+public class DiasUtil {
 
     public static final String PLURAL = " dias";
     public static final String SINGULAR = " dia";
