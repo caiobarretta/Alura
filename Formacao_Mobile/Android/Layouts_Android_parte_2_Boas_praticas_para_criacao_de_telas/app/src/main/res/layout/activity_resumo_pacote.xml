@@ -69,6 +69,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/resumo_pacote_data"
         tools:text="@sample/pacote.json/preco"/>
+    
+    <Button
+        android:id="@+id/resumo_pacote_botao_pagamento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="realizar pagamento"
+        android:layout_margin="8dp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/botao_redondo_laranja"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package br.com.alura.aluraviagens.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -20,8 +22,9 @@ public class ListaPacotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_pacotes);
 
         setTitle(R.string.TITULO_APPBAR);
-
         configuraLista();
+
+        startActivity(new Intent(this, ResumoPacoteActivity.class));
     }
 
     private void configuraLista() {
