@@ -39,8 +39,6 @@ public class ResumoPacoteActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.resumo_pacote_data)).setText(DataUtil.periodoEmTexto(pacote.getDias()));
     }
 
-
-
     private void mostrarPreco(Pacote pacote) {
         ((TextView)findViewById(R.id.resumo_pacote_preco)).setText(MoedaUtil.formataMoeda(pacote.getPreco()));
     }
