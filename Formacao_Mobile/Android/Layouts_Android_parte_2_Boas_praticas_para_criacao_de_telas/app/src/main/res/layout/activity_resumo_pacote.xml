@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.ResumoPacoteActivity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/resumo_pacote_imagem"
         android:layout_width="0dp"
         android:layout_height="140dp"
-        android:contentDescription="@string/imagem_pacote"
+        android:contentDescription="@string/imagem_do_pacote"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
         android:id="@+id/resumo_pacote_preco_final"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preço Final:"
+        android:text="@string/preco_final"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/resumo_pacote_preco"
         app:layout_constraintEnd_toEndOf="@id/resumo_pacote_preco" />
@@ -67,15 +67,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="8dp"
-        android:textColor="@android:color/holo_green_dark"
+        android:layout_marginEnd="8dp"
         android:textSize="20sp"
-        android:gravity="right|top"
+        android:gravity="end|top"
+        android:textColor="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="@id/resumo_pacote_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/resumo_pacote_data"
         tools:text="@sample/pacote.json/preco"
-        android:layout_marginEnd="8dp" />
+         />
 
     <Button
         android:id="@+id/resumo_pacote_botao_pagamento"
@@ -83,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/botao_redondo_laranja"
-        android:text="realizar pagamento"
+        android:text="@string/realizar_pagamento"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
