@@ -4,7 +4,7 @@
 	color: #FAFFFA;
 	text-align: center;
 	font-family:  "Open Sans Condensed", sans-serif;
-	padding: 20px;
+	padding: 25px;
 	margin: 0px;
 }
 
@@ -24,7 +24,7 @@ p {
 
 blockquote {
 	background-color: #D9E5E3;
-	padding: 16px;
+	padding: 20px;
 	border: solid 10px #C2CCCA;
 	width: 250px;
 	margin: 0px;
@@ -33,6 +33,7 @@ blockquote {
 
 aside {
 	background-color: #3C1D3D;
+	padding: 20px;
 }
 
 a {
@@ -43,4 +44,5 @@ a {
 footer {
 	background-color: #000000;
 	color: #FAFFFA;
+	padding: 20px;
 }
