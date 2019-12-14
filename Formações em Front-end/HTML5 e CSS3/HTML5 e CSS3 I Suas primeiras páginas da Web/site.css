@@ -17,6 +17,12 @@ body {
 	background-color: #F2FFFC;
 }
 
+div {
+	width: 720px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 p {
 	font-family: "Crimson Text", serif;
 	text-align: justify;
