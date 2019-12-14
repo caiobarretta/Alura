@@ -19,3 +19,20 @@ p {
 	font-family: "Crimson Text", serif;
 	text-align: justify;
 }
+
+blockquote {
+	background-color: #D9E5E3;
+}
+
+aside {
+	background-color: #3C1D3D;
+}
+
+a {
+	color: #F2FFFC;
+}
+
+footer {
+	background-color: #000000;
+	color: #FAFFFA;
+}
