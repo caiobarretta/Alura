@@ -6,6 +6,7 @@
 	font-family:  "Open Sans Condensed", sans-serif;
 	padding: 25px;
 	margin: 0px;
+	border: solid #000000 10px;
 }
 
 h2 {
