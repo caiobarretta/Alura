@@ -4,6 +4,8 @@
 	color: #FAFFFA;
 	text-align: center;
 	font-family:  "Open Sans Condensed", sans-serif;
+	padding: 20px;
+	margin: 0px;
 }
 
 h2 {
@@ -22,6 +24,11 @@ p {
 
 blockquote {
 	background-color: #D9E5E3;
+	padding: 16px;
+	border: solid 10px #C2CCCA;
+	width: 250px;
+	margin: 0px;
+	box-sizing: border-box;
 }
 
 aside {
