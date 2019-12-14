@@ -3,19 +3,19 @@
 	background-color: #851944;
 	color: #FAFFFA;
 	text-align: center;
-	font-family: "Arial", sans-serif;
+	font-family:  "Open Sans Condensed", sans-serif;
 }
 
 h2 {
 	font-size: 30px;
-	font-family: "Open Sans", sans-serif;
+	font-family:  "Open Sans Condensed", sans-serif;
 }
 
 body {
-	font-family: "Times New Roman", serif;
 	background-color: #F2FFFC;
 }
 
 p {
+	font-family: "Crimson Text", serif;
 	text-align: justify;
 }
