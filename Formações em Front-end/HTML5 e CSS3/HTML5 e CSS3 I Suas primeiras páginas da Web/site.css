@@ -37,9 +37,14 @@ blockquote {
 	box-sizing: border-box;
 }
 
+ul {
+	list-style-type:none;
+}
+
 aside {
 	background-color: #3C1D3D;
 	padding: 20px;
+	text-align: center;
 }
 
 a {
