@@ -22,12 +22,16 @@ div {
 	width: 720px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 p {
 	font-family: "Crimson Text", serif;
 	text-align: justify;
 	line-height: 1.5;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 blockquote {
@@ -37,6 +41,7 @@ blockquote {
 	width: 250px;
 	margin: 0px;
 	box-sizing: border-box;
+	margin: 20px 40px 20px 40px;
 }
 
 ul {
@@ -49,6 +54,11 @@ aside {
 	text-align: center;
 }
 
+nav h1{
+	font-size: 30px;
+	margin-bottom: 25px;
+}
+
 a {
 	text-decoration: none;
 	color: #851944;
@@ -58,4 +68,11 @@ footer {
 	background-color: #000000;
 	color: #FAFFFA;
 	padding: 20px;
+}
+
+em {
+	font-style: italic;
+}
+strong {
+    font-weight: bold;
 }
