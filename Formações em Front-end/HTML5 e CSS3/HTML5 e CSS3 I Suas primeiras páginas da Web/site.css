@@ -55,8 +55,12 @@ aside {
 	color: #FAFFFA;
 }
 
-aside li{
+.icones-sociais li{
 	display: inline-block;
+}
+
+.social-rodape{
+	margin: 60px;
 }
 
 nav h1{
