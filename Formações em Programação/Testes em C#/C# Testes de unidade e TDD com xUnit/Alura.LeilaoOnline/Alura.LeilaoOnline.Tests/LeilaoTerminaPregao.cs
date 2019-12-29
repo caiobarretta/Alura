@@ -8,6 +8,34 @@ namespace Alura.LeilaoOnline.Tests
 {
     public class LeilaoTerminaPregao
     {
+        [Theory]
+        [InlineData(1200, 1250, new double[] { 800, 1150, 1400, 1250 })]
+        public void RetornaValorSuperiorMaisProximoDadoLeilaoNessaModalidade(double valorDestino, double valorEsperado, double[] ofertas)
+        {
+            //Arrange - cenário
+            var leilao = new Leilao("Van Gogh");
+            var fulano = new Interessada("Fulano", leilao);
+            var sicrano = new Interessada("Sicrano", leilao);
+
+            leilao.IniciaPregao();
+
+            for (int i = 0; i < ofertas.Length; i++)
+            {
+                var valor = ofertas[i];
+                if ((i % 2) == 0)
+                    leilao.RecebeLance(fulano, valor);
+                else
+                    leilao.RecebeLance(sicrano, valor);
+            }
+
+            //Act - Método sobre test
+            leilao.TerminaPregao();
+            var ganhador = leilao.Ganhador;
+
+            //Assert
+            var valorObtido = ganhador.Valor;
+            Assert.Equal(valorEsperado, valorObtido);
+        }
 
         [Theory]
         [InlineData(1200, new double[] { 800, 900, 1000, 1200 })]
