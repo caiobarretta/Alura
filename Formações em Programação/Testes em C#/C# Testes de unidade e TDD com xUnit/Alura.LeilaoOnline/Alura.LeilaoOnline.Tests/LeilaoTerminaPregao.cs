@@ -13,7 +13,9 @@ namespace Alura.LeilaoOnline.Tests
         public void RetornaValorSuperiorMaisProximoDadoLeilaoNessaModalidade(double valorDestino, double valorEsperado, double[] ofertas)
         {
             //Arrange - cenário
-            var leilao = new Leilao("Van Gogh", valorDestino);
+            IModalidadeAvaliacao modalidade = new OfertaSuperiorMaisProxima(valorDestino);
+
+            var leilao = new Leilao("Van Gogh", modalidade);
             var fulano = new Interessada("Fulano", leilao);
             var sicrano = new Interessada("Sicrano", leilao);
 
@@ -44,6 +46,8 @@ namespace Alura.LeilaoOnline.Tests
         public void RetornaMaiorValorDadoLeilaoComPeloMenosUmlance(double valorEsperado, double[] ofertas)
         {
             //Arrange - cenário
+            IModalidadeAvaliacao modalidade = new MaiorValor();
+
             var leilao = new Leilao("Van Gogh");
             var fulano = new Interessada("Fulano", leilao);
             var sicrano = new Interessada("Sicrano", leilao);
