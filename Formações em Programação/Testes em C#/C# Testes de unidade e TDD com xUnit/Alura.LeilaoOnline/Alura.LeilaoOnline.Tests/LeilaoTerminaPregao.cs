@@ -48,7 +48,7 @@ namespace Alura.LeilaoOnline.Tests
             //Arrange - cenário
             IModalidadeAvaliacao modalidade = new MaiorValor();
 
-            var leilao = new Leilao("Van Gogh");
+            var leilao = new Leilao("Van Gogh", modalidade);
             var fulano = new Interessada("Fulano", leilao);
             var sicrano = new Interessada("Sicrano", leilao);
 
@@ -76,7 +76,8 @@ namespace Alura.LeilaoOnline.Tests
         public void LancaInvalidOperationExceptionDadoPregaoNaoIniciado()
         {
             //Arrange - cenário
-            var leilao = new Leilao("Van Gogh");
+            IModalidadeAvaliacao modalidade = new MaiorValor();
+            var leilao = new Leilao("Van Gogh", modalidade);
 
             //Assert
             var execaoObtida = Assert.Throws<InvalidOperationException>(
@@ -92,7 +93,8 @@ namespace Alura.LeilaoOnline.Tests
         public void RetornaZeroDadoLeilaoSemLances()
         {
             //Arrange - cenário
-            var leilao = new Leilao("Van Gogh");
+            IModalidadeAvaliacao modalidade = new MaiorValor();
+            var leilao = new Leilao("Van Gogh", modalidade);
             leilao.IniciaPregao();
 
             //Act - Método sobre test
