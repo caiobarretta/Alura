@@ -1,6 +1,8 @@
 using Alura.CoisasAFazer.Core.Commands;
 using Alura.CoisasAFazer.Core.Models;
+using Alura.CoisasAFazer.Infrastructure;
 using Alura.CoisasAFazer.Services.Handlers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using Xunit;
@@ -17,7 +19,11 @@ namespace Alura.CoisaAFazer.Testes
             var tituloTarefa = "Estuda XUnit";
             var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
 
-            var repo = new RepositorioTarefasFake();
+            var options = new DbContextOptionsBuilder<DbTarefasContext>()
+                .UseInMemoryDatabase("DbTarefasContext")
+                .Options;
+            var contexto = new DbTarefasContext(options);
+            var repo = new RepositorioTarefa(contexto);
 
             //Act
             //Executar comando
@@ -27,9 +33,6 @@ namespace Alura.CoisaAFazer.Testes
             //Assert
             var tarefa = repo.ObtemTarefas(tarefa => tarefa.Titulo == tituloTarefa).FirstOrDefault();
             Assert.NotNull(tarefa);
-
-            //CadastraTarefaHandlerExecute
-
 
         }
     }

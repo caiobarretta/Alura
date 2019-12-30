@@ -3,6 +3,7 @@ using System.Linq;
 using Alura.CoisasAFazer.Core.Commands;
 using Alura.CoisasAFazer.Core.Models;
 using Alura.CoisasAFazer.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alura.CoisasAFazer.Services.Handlers
 {
@@ -10,9 +11,9 @@ namespace Alura.CoisasAFazer.Services.Handlers
     {
         IRepositorioTarefas _repo;
 
-        public GerenciaPrazoDasTarefasHandler()
+        public GerenciaPrazoDasTarefasHandler(IRepositorioTarefas repositorio)
         {
-            _repo = new RepositorioTarefa();
+            _repo = repositorio;
         }
 
         public void Execute(GerenciaPrazoDasTarefas comando)

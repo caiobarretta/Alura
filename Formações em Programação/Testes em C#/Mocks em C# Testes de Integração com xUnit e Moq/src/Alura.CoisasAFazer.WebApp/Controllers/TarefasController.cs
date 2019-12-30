@@ -3,6 +3,7 @@ using Alura.CoisasAFazer.WebApp.Models;
 using Alura.CoisasAFazer.Core.Commands;
 using Alura.CoisasAFazer.Services.Handlers;
 using Alura.CoisasAFazer.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Alura.CoisasAFazer.WebApp.Controllers
 {
@@ -13,14 +14,16 @@ namespace Alura.CoisasAFazer.WebApp.Controllers
         IRepositorioTarefas _repo;
         public TarefasController()
         {
-            _repo = new RepositorioTarefa();
+            var options = new DbContextOptionsBuilder<DbTarefasContext>().Options;
+            var contexto = new DbTarefasContext();
+            _repo = new RepositorioTarefa(contexto);
         }
 
         [HttpPost]
         public IActionResult EndpointCadastraTarefa(CadastraTarefaVM model)
         {
             var cmdObtemCateg = new ObtemCategoriaPorId(model.IdCategoria);
-            var categoria = new ObtemCategoriaPorIdHandler().Execute(cmdObtemCateg);
+            var categoria = new ObtemCategoriaPorIdHandler(_repo).Execute(cmdObtemCateg);
             if (categoria == null)
             {
                 return NotFound("Categoria não encontrada");
