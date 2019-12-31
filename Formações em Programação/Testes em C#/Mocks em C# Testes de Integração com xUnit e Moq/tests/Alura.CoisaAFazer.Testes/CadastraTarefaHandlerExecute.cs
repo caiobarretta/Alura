@@ -2,6 +2,7 @@ using Alura.CoisasAFazer.Core.Commands;
 using Alura.CoisasAFazer.Core.Models;
 using Alura.CoisasAFazer.Infrastructure;
 using Alura.CoisasAFazer.Services.Handlers;
+using Alura.CoisasAFazer.Services.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -33,7 +34,28 @@ namespace Alura.CoisaAFazer.Testes
             //Assert
             var tarefa = repo.ObtemTarefas(tarefa => tarefa.Titulo == tituloTarefa).FirstOrDefault();
             Assert.NotNull(tarefa);
+        }
 
+
+        [Fact]
+        public void QuandoExceptionForLancadaResultadoIsSuccessDeveSerFalse()
+        {
+            //Arrange
+            //Cria comando
+
+            var options = new DbContextOptionsBuilder<DbTarefasContext>()
+                .UseInMemoryDatabase("DbTarefasContext")
+                .Options;
+            var contexto = new DbTarefasContext(options);
+            var repo = new RepositorioTarefa(contexto);
+
+            //Act
+            //Executar comando
+            var handler = new CadastraTarefaHandler(repo);
+            CommandResult result = handler.Execute(null);
+
+            //Assert
+            Assert.False(result.IsSuccess);
         }
     }
 }
