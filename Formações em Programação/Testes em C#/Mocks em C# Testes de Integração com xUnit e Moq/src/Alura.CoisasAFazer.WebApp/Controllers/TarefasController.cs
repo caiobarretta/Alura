@@ -24,6 +24,12 @@ namespace Alura.CoisasAFazer.WebApp.Controllers
 
         }
 
+        public TarefasController(IRepositorioTarefas repositorio, ILogger<CadastraTarefaHandler> logger)
+        {
+            _repo = repositorio;
+            _logger = logger;
+        }
+
         [HttpPost]
         public IActionResult EndpointCadastraTarefa(CadastraTarefaVM model)
         {
