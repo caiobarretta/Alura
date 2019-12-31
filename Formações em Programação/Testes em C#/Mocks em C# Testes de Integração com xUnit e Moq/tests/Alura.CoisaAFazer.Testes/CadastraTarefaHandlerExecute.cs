@@ -37,13 +37,11 @@ namespace Alura.CoisaAFazer.Testes
             Assert.NotNull(tarefa);
         }
 
-
         [Fact]
         public void QuandoExceptionForLancadaResultadoIsSuccessDeveSerFalse()
         {
             //Arrange
             //Cria comando
-
             var options = new DbContextOptionsBuilder<DbTarefasContext>()
                 .UseInMemoryDatabase("DbTarefasContext")
                 .Options;
@@ -64,6 +62,8 @@ namespace Alura.CoisaAFazer.Testes
         {
             //Arrange
             //Cria comando
+            var tituloTarefa = "Estuda XUnit";
+            var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
             var mock = new Mock<IRepositorioTarefas>();
             mock.Setup(r => r.IncluirTarefas(It.IsAny<Tarefa[]>()))
                 .Throws(new Exception("Houve um erro na inclusão de tarefas."));
@@ -72,10 +72,32 @@ namespace Alura.CoisaAFazer.Testes
             //Act
             //Executar comando
             var handler = new CadastraTarefaHandler(repo);
-            CommandResult result = handler.Execute(null);
+            CommandResult result = handler.Execute(comando);
 
             //Assert
             Assert.False(result.IsSuccess);
+        }
+
+
+        [Fact]
+        public void QuandoExceptionForLancadaDeveLogarAMensagemExcessaoMock()
+        {
+            //Arrange
+            //Cria comando
+            var tituloTarefa = "Estuda XUnit";
+            var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
+            var mock = new Mock<IRepositorioTarefas>();
+            mock.Setup(r => r.IncluirTarefas(It.IsAny<Tarefa[]>()))
+                .Throws(new Exception("Houve um erro na inclusão de tarefas."));
+            var repo = mock.Object;
+
+            //Act
+            //Executar comando
+            var handler = new CadastraTarefaHandler(repo);
+            CommandResult result = handler.Execute(comando);
+
+            //Assert
+
         }
     }
 }
