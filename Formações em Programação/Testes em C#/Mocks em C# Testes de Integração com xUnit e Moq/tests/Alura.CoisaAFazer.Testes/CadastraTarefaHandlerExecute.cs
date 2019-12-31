@@ -4,6 +4,7 @@ using Alura.CoisasAFazer.Infrastructure;
 using Alura.CoisasAFazer.Services.Handlers;
 using Alura.CoisasAFazer.Services.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System;
 using System.Linq;
@@ -21,6 +22,10 @@ namespace Alura.CoisaAFazer.Testes
             var tituloTarefa = "Estuda XUnit";
             var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
 
+
+            var mock = new Mock<ILogger<CadastraTarefaHandler>>();
+            var logger = mock.Object;
+
             var options = new DbContextOptionsBuilder<DbTarefasContext>()
                 .UseInMemoryDatabase("DbTarefasContext")
                 .Options;
@@ -29,7 +34,7 @@ namespace Alura.CoisaAFazer.Testes
 
             //Act
             //Executar comando
-            var handler = new CadastraTarefaHandler(repo);
+            var handler = new CadastraTarefaHandler(repo, logger);
             handler.Execute(comando);
 
             //Assert
@@ -41,7 +46,9 @@ namespace Alura.CoisaAFazer.Testes
         public void QuandoExceptionForLancadaResultadoIsSuccessDeveSerFalse()
         {
             //Arrange
-            //Cria comando
+            var mock = new Mock<ILogger<CadastraTarefaHandler>>();
+            var logger = mock.Object;
+
             var options = new DbContextOptionsBuilder<DbTarefasContext>()
                 .UseInMemoryDatabase("DbTarefasContext")
                 .Options;
@@ -50,7 +57,7 @@ namespace Alura.CoisaAFazer.Testes
 
             //Act
             //Executar comando
-            var handler = new CadastraTarefaHandler(repo);
+            var handler = new CadastraTarefaHandler(repo, logger);
             CommandResult result = handler.Execute(null);
 
             //Assert
@@ -61,7 +68,9 @@ namespace Alura.CoisaAFazer.Testes
         public void QuandoExceptionForLancadaResultadoIsSuccessDeveSerFalseMock()
         {
             //Arrange
-            //Cria comando
+            var mockLogger = new Mock<ILogger<CadastraTarefaHandler>>();
+            var logger = mockLogger.Object;
+
             var tituloTarefa = "Estuda XUnit";
             var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
             var mock = new Mock<IRepositorioTarefas>();
@@ -70,8 +79,7 @@ namespace Alura.CoisaAFazer.Testes
             var repo = mock.Object;
 
             //Act
-            //Executar comando
-            var handler = new CadastraTarefaHandler(repo);
+            var handler = new CadastraTarefaHandler(repo, logger);
             CommandResult result = handler.Execute(comando);
 
             //Assert
@@ -83,21 +91,24 @@ namespace Alura.CoisaAFazer.Testes
         public void QuandoExceptionForLancadaDeveLogarAMensagemExcessaoMock()
         {
             //Arrange
-            //Cria comando
+            var mensagemDeErroEsperada = "Houve um erro na inclusão de tarefas.";
+
+            var mockLogger = new Mock<ILogger<CadastraTarefaHandler>>();
+            var logger = mockLogger.Object;
+
             var tituloTarefa = "Estuda XUnit";
             var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
             var mock = new Mock<IRepositorioTarefas>();
             mock.Setup(r => r.IncluirTarefas(It.IsAny<Tarefa[]>()))
-                .Throws(new Exception("Houve um erro na inclusão de tarefas."));
+                .Throws(new Exception(mensagemDeErroEsperada));
             var repo = mock.Object;
 
             //Act
-            //Executar comando
-            var handler = new CadastraTarefaHandler(repo);
+            var handler = new CadastraTarefaHandler(repo, logger);
             CommandResult result = handler.Execute(comando);
 
             //Assert
-
+            mockLogger.Verify(l => l.LogError(mensagemDeErroEsperada), Times.Once());
         }
     }
 }
