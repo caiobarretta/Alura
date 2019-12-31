@@ -4,6 +4,7 @@ using Alura.CoisasAFazer.Infrastructure;
 using Alura.CoisasAFazer.Services.Handlers;
 using Alura.CoisasAFazer.Services.Models;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using System;
 using System.Linq;
 using Xunit;
@@ -48,6 +49,25 @@ namespace Alura.CoisaAFazer.Testes
                 .Options;
             var contexto = new DbTarefasContext(options);
             var repo = new RepositorioTarefa(contexto);
+
+            //Act
+            //Executar comando
+            var handler = new CadastraTarefaHandler(repo);
+            CommandResult result = handler.Execute(null);
+
+            //Assert
+            Assert.False(result.IsSuccess);
+        }
+
+        [Fact]
+        public void QuandoExceptionForLancadaResultadoIsSuccessDeveSerFalseMock()
+        {
+            //Arrange
+            //Cria comando
+            var mock = new Mock<IRepositorioTarefas>();
+            mock.Setup(r => r.IncluirTarefas(It.IsAny<Tarefa[]>()))
+                .Throws(new Exception("Houve um erro na inclusão de tarefas."));
+            var repo = mock.Object;
 
             //Act
             //Executar comando
