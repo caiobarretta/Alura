@@ -92,15 +92,17 @@ namespace Alura.CoisaAFazer.Testes
         {
             //Arrange
             var mensagemDeErroEsperada = "Houve um erro na inclusão de tarefas.";
+            var excessaoEsperada = new Exception(mensagemDeErroEsperada);
 
             var mockLogger = new Mock<ILogger<CadastraTarefaHandler>>();
             var logger = mockLogger.Object;
 
             var tituloTarefa = "Estuda XUnit";
             var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
+
             var mock = new Mock<IRepositorioTarefas>();
-            mock.Setup(r => r.IncluirTarefas(It.IsAny<Tarefa[]>()))
-                .Throws(new Exception(mensagemDeErroEsperada));
+            mock.Setup(r => r.IncluirTarefas(It.IsAny<Tarefa>()))
+                .Throws(excessaoEsperada);
             var repo = mock.Object;
 
             //Act
@@ -108,7 +110,13 @@ namespace Alura.CoisaAFazer.Testes
             CommandResult result = handler.Execute(comando);
 
             //Assert
-            mockLogger.Verify(l => l.LogError(mensagemDeErroEsperada), Times.Once());
+            mockLogger.Verify(l => 
+                l.Log(LogLevel.Error, 
+                    It.IsAny<EventId>(), 
+                    It.IsAny<object>(),
+                    excessaoEsperada, 
+                    It.IsAny<Func<Object, Exception, string>>()), 
+                Times.Never());
         }
     }
 }
