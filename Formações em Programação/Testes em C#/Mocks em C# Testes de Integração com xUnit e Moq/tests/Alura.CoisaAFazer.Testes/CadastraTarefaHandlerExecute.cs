@@ -42,6 +42,48 @@ namespace Alura.CoisaAFazer.Testes
             Assert.NotNull(tarefa);
         }
 
+        delegate void CapturaMensagemLog(LogLevel logLevel, EventId eventId, object state, Exception exception, Func<Object, Exception, string> formatter);
+
+        [Fact]
+        public void DadaTarefaComInformacoesValidasDeveLogar()
+        {
+            //Arrange
+            //Cria comando
+            var tituloTarefa = "Estuda XUnit";
+            var comando = new CadastraTarefa(tituloTarefa, new Categoria("estudo"), new DateTime(2019, 12, 31));
+
+            var mockLogger = new Mock<ILogger<CadastraTarefaHandler>>();
+
+            LogLevel levelCapturado = LogLevel.None;
+            CapturaMensagemLog captura = (logLevel, eventId, state, exception, formatter) =>
+            {
+                levelCapturado = logLevel;
+            };
+
+            mockLogger.Setup(l =>
+                l.Log(
+                    It.IsAny<LogLevel>(),
+                    It.IsAny<EventId>(),
+                    It.IsAny<object>(),
+                    It.IsAny<Exception>(),
+                    It.IsAny<Func<Object, Exception, string>>()
+                    )).Callback(captura);
+
+            var logger = mockLogger.Object;
+
+            var mock = new Mock<IRepositorioTarefas>();
+            var repo = mock.Object;
+
+            //Act
+            //Executar comando
+            var handler = new CadastraTarefaHandler(repo, logger);
+            handler.Execute(comando);
+
+            //Assert
+            Assert.Equal(LogLevel.None, levelCapturado);
+
+        }
+
         [Fact]
         public void QuandoExceptionForLancadaResultadoIsSuccessDeveSerFalse()
         {
@@ -85,7 +127,6 @@ namespace Alura.CoisaAFazer.Testes
             //Assert
             Assert.False(result.IsSuccess);
         }
-
 
         [Fact]
         public void QuandoExceptionForLancadaDeveLogarAMensagemExcessaoMock()
