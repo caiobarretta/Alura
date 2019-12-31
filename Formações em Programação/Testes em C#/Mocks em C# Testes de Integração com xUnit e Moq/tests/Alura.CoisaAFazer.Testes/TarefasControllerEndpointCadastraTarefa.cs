@@ -46,5 +46,34 @@ namespace Alura.CoisaAFazer.Testes
             //Assert
             Assert.IsType<OkResult>(actionResult);//200
         }
+
+        [Fact]
+        public void QuandoExcessaoForLancadaDeveRetornarStatusCode500()
+        {
+            //Arrange
+            var mock = new Mock<IRepositorioTarefas>();
+            mock.Setup(r => r.ObtemCategoriaPorId(20)).Returns(new Categoria(20, "Estudo"));
+            mock.Setup(r => r.IncluirTarefas(It.IsAny<Tarefa[]>()))
+                .Throws(new Exception("Houve um erro"));
+            var repo = mock.Object;
+
+            var mockLogger = new Mock<ILogger<CadastraTarefaHandler>>();
+
+            var controlador = new TarefasController(repo, mockLogger.Object);
+            CadastraTarefaVM model = new CadastraTarefaVM()
+            {
+                IdCategoria = 20,
+                Titulo = "Estudar xUnit",
+                Prazo = new DateTime(2019, 12, 31)
+            };
+
+            //Act
+            var actionResult = controlador.EndpointCadastraTarefa(model);
+
+            //Assert
+            Assert.IsType<StatusCodeResult>(actionResult);
+            var statusCode = (actionResult as StatusCodeResult).StatusCode;
+            Assert.Equal(500, statusCode);
+        }
     }
 }
