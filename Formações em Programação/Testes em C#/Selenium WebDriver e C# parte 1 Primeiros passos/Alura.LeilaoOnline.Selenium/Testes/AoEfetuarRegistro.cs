@@ -96,6 +96,27 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             btnRegistro.Click();
 
             //Assert
+            var elemento = _driver.FindElement(By.CssSelector("span.msg-erro[data-valmsg-for=Nome]"));
+            Assert.True(elemento.Displayed);
+        }
+
+        [Fact]
+        public void DadoEmailInvalidoDeveMostrarMensagemDeErro()
+        {
+            //Arrage
+            _driver.Navigate().GoToUrl("http://localhost:5000");
+
+            //Email
+            var inputEmail = _driver.FindElement(By.Id("Email"));
+            inputEmail.SendKeys("caioabarretta");
+
+            //Action
+            var btnRegistro = _driver.FindElement(By.Id("btnRegistro"));
+            btnRegistro.Click();
+
+            //Assert
+            var elemento = _driver.FindElement(By.CssSelector("span.msg-erro[data-valmsg-for=Email]"));
+            Assert.True(elemento.Displayed);
         }
     }
 }
