@@ -10,6 +10,10 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
         private By byLogoutLink;
         private By byMeuPerfilLink;
+        private By bySelectCategorias;
+        private By byInputTermo;
+        private By byInputAndamento;
+        private By byInputBtnPesquisar;
 
         public DashboardInteressadaPO(IWebDriver driver)
         {
