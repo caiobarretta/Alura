@@ -9,12 +9,11 @@ namespace Alura.LeilaoOnline.Selenium.Fixtures
 {
     public class TestFixture : IDisposable
     {
-        public IWebDriver Driver { get; private set; }
-
+        public IWebDriver Driver { get; set; }
         //Setup
         public TestFixture()
         {
-            Driver = new ChromeDriver(TestHelper.PastaDoExecutavel);
+            Driver = new ChromeDriver(TestHelper.PastaDoExecutavel());
         }
 
         //TearDown

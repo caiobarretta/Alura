@@ -1,36 +1,43 @@
 ﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
     public class LoginPO
     {
-        private IWebDriver driver;
+        private const string Url = "http://localhost:5000/Autenticacao/Login";
+
+        private readonly IWebDriver _driver;
+
         private By byInputLogin;
-        private By byInputSenha;
-        private By byBotaoLogin;
+        private By byInputPassword;
+        private By byInputBtnLogin;
 
         public LoginPO(IWebDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
+
             byInputLogin = By.Id("Login");
-            byInputSenha = By.Id("Password");
-            byBotaoLogin = By.Id("btnLogin");
+            byInputPassword = By.Id("Password");
+            byInputBtnLogin = By.Id("btnLogin");
         }
 
-        public void Visitar()
+        public void PreencheFormulario(string login, string password)
         {
-            driver.Navigate().GoToUrl("http://localhost:5000/Autenticacao/Login");
+            _driver.FindElement(byInputLogin).SendKeys(login);//Login
+            _driver.FindElement(byInputPassword).SendKeys(password);//Password
         }
 
-        public void PreencheFormulario(string login, string senha)
+        public void NavigateGoToUrl()
         {
-            driver.FindElement(byInputLogin).SendKeys(login);
-            driver.FindElement(byInputSenha).SendKeys(senha);
+            _driver.Navigate().GoToUrl(Url);
         }
 
-        public void SubmeteFormulario()
+        public void SubmitForm()
         {
-            driver.FindElement(byBotaoLogin).Submit();
+            _driver.FindElement(byInputBtnLogin).Submit();
         }
 
     }

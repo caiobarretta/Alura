@@ -1,6 +1,9 @@
 ﻿using Alura.LeilaoOnline.Selenium.Fixtures;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using Xunit;
 
 namespace Alura.LeilaoOnline.Selenium.Testes
@@ -8,86 +11,71 @@ namespace Alura.LeilaoOnline.Selenium.Testes
     [Collection("Chrome Driver")]
     public class AoEfetuarRegistro
     {
-        private IWebDriver driver;
-
+        private readonly IWebDriver _driver;
+        private RegistroPO registroPO;
         public AoEfetuarRegistro(TestFixture fixture)
         {
-            driver = fixture.Driver;
+            _driver = fixture.Driver;
+            registroPO = new RegistroPO(_driver);
         }
 
         [Fact]
         public void DadoInfoValidasDeveIrParaPaginaDeAgradecimento()
         {
-            //arrange
-            var registroPO = new RegistroPO(driver);
-            registroPO.Visitar();
+            //Arrage
+            registroPO.NavigateGoToUrl();
+            registroPO.PreencheFormulario(nome: "Caio Augusto Barretta", email: "caioabarretta@gmail.com", password: "123", confirmPassword: "123");
 
-            registroPO.PreencheFormulario("Daniel Portugal", "daniel.portugal@caelum.com.br", "123", "123");
+            //Action
+            registroPO.SubmitForm();
 
-            //act
-            registroPO.SubmeteFormulario();
-
-            //assert
-            Assert.Contains("Obrigado", driver.PageSource);
-
+            //Assert
+            Assert.Contains("Obrigado", _driver.PageSource);
         }
 
         [Theory]
-        [InlineData("", "daniel.portugal@caelum.com.br", "123", "123")]
-        [InlineData("Daniel Portugal", "daniel", "123", "123")]
-        [InlineData("Daniel Portugal", "daniel.portugal@caelum.com.br", "123", "456")]
-        [InlineData("Daniel Portugal", "daniel.portugal@caelum.com.br", "123", "")]
-        public void DadoInfoinvalidasDeveContinuarNaHome(
-            string nome,
-            string email,
-            string senha,
-            string confirmSenha)
+        [InlineData("", "caioabarretta@gmail.com", "123", "123")]
+        [InlineData("Caio Augusto Barretta", "", "123", "123")]
+        [InlineData("Caio Augusto Barretta", "caioabarretta", "123", "123")]
+        [InlineData("Caio Augusto Barretta", "caioabarretta@gmail.com", "", "123")]
+        [InlineData("Caio Augusto Barretta", "caioabarretta@gmail.com", "123", "")]
+        public void DadoInfoInvalidasDeveIrContinuarNaHome(string nome, string email, string password, string confirmPassword)
         {
-            //arrange
-            var registroPO = new RegistroPO(driver);
-            registroPO.Visitar();
-            registroPO.PreencheFormulario(nome, email, senha, confirmSenha);
+            //Arrage
+            registroPO.NavigateGoToUrl();
+            registroPO.PreencheFormulario(nome: nome, email: email, password: password, confirmPassword: confirmPassword);
 
-            //act
-            registroPO.SubmeteFormulario();
+            //Action
+            registroPO.SubmitForm();
 
-            //assert
-            Assert.Contains("section-registro", driver.PageSource);
-
+            //Assert
+            Assert.Contains("section-registro", _driver.PageSource);
         }
 
         [Fact]
         public void DadoNomeEmBrancoDeveMostrarMensagemDeErro()
         {
-            //arrange
-            var registroPO = new RegistroPO(driver);
-            registroPO.Visitar();
+            //Arrage
+            registroPO.NavigateGoToUrl();
 
-            //act
-            registroPO.SubmeteFormulario();
+            //Action
+            registroPO.SubmitForm();
 
-            //assert - 
+            //Assert
             Assert.Equal("The Nome field is required.", registroPO.NomeMensagemErro);
         }
 
         [Fact]
         public void DadoEmailInvalidoDeveMostrarMensagemDeErro()
         {
-            //arrange
-            var registroPO = new RegistroPO(driver);
-            registroPO.Visitar();
+            //Arrage
+            registroPO.NavigateGoToUrl();
+            registroPO.PreencheFormulario(nome: string.Empty, email: "caioabarretta", password: string.Empty, confirmPassword: string.Empty);
 
-            registroPO.PreencheFormulario(
-                nome: "",
-                email: "daniel",
-                senha: "",
-                confirmSenha: ""
-             );
+            //Action
+            registroPO.SubmitForm();
 
-            //act
-            registroPO.SubmeteFormulario();
-
-            //assert
+            //Assert
             Assert.Equal("Please enter a valid email address.", registroPO.EmailMensagemErro);
         }
     }

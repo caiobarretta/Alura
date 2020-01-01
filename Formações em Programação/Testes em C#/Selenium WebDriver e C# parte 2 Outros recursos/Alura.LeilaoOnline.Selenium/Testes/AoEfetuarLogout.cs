@@ -18,14 +18,15 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             this.driver = fixtuxe.Driver;
         }
 
+        [Fact]
         public void DadoLoginValidoDeveIrParaHomeNaoLogada()
         {
             //Arrange
             var loginPO = new LoginPO(driver);
-            loginPO.Visitar();
+            loginPO.NavigateGoToUrl();
 
             loginPO.PreencheFormulario("fulano@exemplo", "123");
-            loginPO.SubmeteFormulario();
+            loginPO.SubmitForm();
 
             //Act
 

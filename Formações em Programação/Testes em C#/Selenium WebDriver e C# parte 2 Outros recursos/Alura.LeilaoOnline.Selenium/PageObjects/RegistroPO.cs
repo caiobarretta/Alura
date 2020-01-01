@@ -1,57 +1,60 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
     public class RegistroPO
     {
-        private IWebDriver driver;
+        private const string Url = "http://localhost:5000";
+
+        private readonly IWebDriver _driver;
         private By byFormRegistro;
         private By byInputNome;
         private By byInputEmail;
-        private By byInputSenha;
-        private By byInputConfirmSenha;
-        private By byBotaoRegistro;
-        private By bySpanErroEmail;
+        private By byInputPassword;
+        private By byInputConfirmPassword;
+        private By byInputBtnRegistro;
+
         private By bySpanErroNome;
+        private By bySpanErroEmail;
 
-        public string EmailMensagemErro => driver.FindElement(bySpanErroEmail).Text;
 
-        public string NomeMensagemErro => driver.FindElement(bySpanErroNome).Text;
+        public string NomeMensagemErro => _driver.FindElement(bySpanErroNome).Text;
+        public string EmailMensagemErro => _driver.FindElement(bySpanErroEmail).Text;
 
         public RegistroPO(IWebDriver driver)
         {
-            this.driver = driver;
-            byFormRegistro = By.TagName("form");
+            _driver = driver;
+
+            byFormRegistro = By.TagName("Form");
             byInputNome = By.Id("Nome");
             byInputEmail = By.Id("Email");
-            byInputSenha = By.Id("Password");
-            byInputConfirmSenha = By.Id("ConfirmPassword");
-            byBotaoRegistro = By.Id("btnRegistro");
-            bySpanErroEmail = By.CssSelector("span.msg-erro[data-valmsg-for=Email]");
+            byInputPassword = By.Id("Password");
+            byInputConfirmPassword = By.Id("ConfirmPassword");
+            byInputBtnRegistro = By.Id("btnRegistro");
+
             bySpanErroNome = By.CssSelector("span.msg-erro[data-valmsg-for=Nome]");
+            bySpanErroEmail = By.CssSelector("span.msg-erro[data-valmsg-for=Email]");
         }
 
-        public void Visitar()
+        public void PreencheFormulario(string nome, string email, string password, string confirmPassword)
         {
-            driver.Navigate().GoToUrl("http://localhost:5000");
+            _driver.FindElement(byInputNome).SendKeys(nome);//Nome
+            _driver.FindElement(byInputEmail).SendKeys(email);//Email
+            _driver.FindElement(byInputPassword).SendKeys(password);//Password
+            _driver.FindElement(byInputConfirmPassword).SendKeys(confirmPassword);//ConfirmPassword
         }
 
-        public void SubmeteFormulario()
+        public void NavigateGoToUrl()
         {
-            driver.FindElement(byBotaoRegistro).Click();
+            _driver.Navigate().GoToUrl(Url);
         }
 
-        public void PreencheFormulario(
-            string nome, 
-            string email, 
-            string senha, 
-            string confirmSenha)
+        public void SubmitForm()
         {
-            driver.FindElement(byInputNome).SendKeys(nome);
-            driver.FindElement(byInputEmail).SendKeys(email);
-            driver.FindElement(byInputSenha).SendKeys(senha);
-            driver.FindElement(byInputConfirmSenha).SendKeys(confirmSenha);
+            _driver.FindElement(byInputBtnRegistro).Click();
         }
     }
 }
