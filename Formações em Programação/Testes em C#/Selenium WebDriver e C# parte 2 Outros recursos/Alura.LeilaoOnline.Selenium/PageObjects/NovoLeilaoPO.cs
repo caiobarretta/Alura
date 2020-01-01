@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
@@ -21,6 +23,17 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
         private By inputBtnSalvar;
 
+        public IEnumerable<string> Categorias 
+        {
+            get
+            {
+                return new SelectElement(_driver.FindElement(inputCategoria)).Options
+                    .Where(o => o.Enabled)
+                    .Select(o => o.Text);
+            }
+        }
+
+
         public NovoLeilaoPO(IWebDriver driver)
         {
             _driver = driver;
@@ -35,6 +48,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             inputBtnSalvar = By.CssSelector("button[type=submit]");
         }
 
+
         public void NavigateGoToUrl()
         {
             _driver.Navigate().GoToUrl(Url);
@@ -44,8 +58,8 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         {
             _driver.FindElement(inputTitulo).SendKeys(titulo);
             _driver.FindElement(inputDescricao).SendKeys(descricao);
-            
-            //_driver.FindElement(inputCategoria).SendKeys(categoria);
+
+            //new SelectElement(_driver.FindElement(inputCategoria)).SelectByText(categoria);
 
             _driver.FindElement(inputValorInicial).SendKeys(valorInicial.ToString());
             _driver.FindElement(inputImagem).SendKeys(imagem);
