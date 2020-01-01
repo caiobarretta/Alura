@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using Alura.LeilaoOnline.Selenium.Helpers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,32 +31,39 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
         public void PesquisarLeiloes(List<string> categorias)
         {
-            var selectWrapper = _driver.FindElement(bySelectCategorias);
-            Thread.Sleep(500);
+            var select = new SelectMaterialize(_driver, bySelectCategorias);
 
-            selectWrapper.Click();
+            select.DeselectAll();
 
-            var opcoes = selectWrapper.FindElements(By.CssSelector("li>span")).ToList();
+            categorias.ForEach(categ => select.SelectByText(categ));
 
-            opcoes.ForEach(o =>
-            {
-                o.Click();
-            });
 
-            categorias.ForEach(categ =>
-            {
-                opcoes
-                    .Where(o => o.Text == categ)
-                    .ToList()
-                    .ForEach(o => o.Click());
-            });
+            //var selectWrapper = _driver.FindElement(bySelectCategorias);
+            //Thread.Sleep(500);
 
-            Thread.Sleep(1000);
+            //selectWrapper.Click();
 
-            selectWrapper.FindElement(By.CssSelector("li"))
-                .SendKeys(Keys.Tab);
+            //var opcoes = selectWrapper.FindElements(By.CssSelector("li>span")).ToList();
 
-            Thread.Sleep(1000);
+            //opcoes.ForEach(o =>
+            //{
+            //    o.Click();
+            //});
+
+            //categorias.ForEach(categ =>
+            //{
+            //    opcoes
+            //        .Where(o => o.Text == categ)
+            //        .ToList()
+            //        .ForEach(o => o.Click());
+            //});
+
+            //Thread.Sleep(1000);
+
+            //selectWrapper.FindElement(By.CssSelector("li"))
+            //    .SendKeys(Keys.Tab);
+
+            //Thread.Sleep(1000);
         }
 
         public void EfetuarLogout()
