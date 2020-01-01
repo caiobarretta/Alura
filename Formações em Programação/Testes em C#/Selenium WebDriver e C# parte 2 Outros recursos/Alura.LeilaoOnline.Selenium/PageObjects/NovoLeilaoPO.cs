@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Alura.LeilaoOnline.Selenium.Helpers;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
             inputTitulo = By.Id("Titulo");
             inputDescricao = By.Id("Descricao");
-            inputCategoria = By.Id("Categoria");
+            inputCategoria = By.ClassName("select-wrapper");
             inputValorInicial = By.Id("ValorInicial");
             inputImagem = By.Id("ArquivoImagem");
             inputInicioPregrao = By.Id("InicioPregao");
@@ -59,7 +60,9 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             _driver.FindElement(inputTitulo).SendKeys(titulo);
             _driver.FindElement(inputDescricao).SendKeys(descricao);
 
-            //new SelectElement(_driver.FindElement(inputCategoria)).SelectByText(categoria);
+            var select = new SelectMaterialize(_driver.FindElement(inputCategoria));
+            select.DeselectAll();
+            select.SelectByText(categoria);
 
             _driver.FindElement(inputValorInicial).SendKeys(valorInicial.ToString());
             _driver.FindElement(inputImagem).SendKeys(imagem);

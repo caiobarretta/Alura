@@ -31,39 +31,9 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
         public void PesquisarLeiloes(List<string> categorias)
         {
-            var select = new SelectMaterialize(_driver, bySelectCategorias);
-
+            var select = new SelectMaterialize(_driver.FindElement(bySelectCategorias));
             select.DeselectAll();
-
             categorias.ForEach(categ => select.SelectByText(categ));
-
-
-            //var selectWrapper = _driver.FindElement(bySelectCategorias);
-            //Thread.Sleep(500);
-
-            //selectWrapper.Click();
-
-            //var opcoes = selectWrapper.FindElements(By.CssSelector("li>span")).ToList();
-
-            //opcoes.ForEach(o =>
-            //{
-            //    o.Click();
-            //});
-
-            //categorias.ForEach(categ =>
-            //{
-            //    opcoes
-            //        .Where(o => o.Text == categ)
-            //        .ToList()
-            //        .ForEach(o => o.Click());
-            //});
-
-            //Thread.Sleep(1000);
-
-            //selectWrapper.FindElement(By.CssSelector("li"))
-            //    .SendKeys(Keys.Tab);
-
-            //Thread.Sleep(1000);
         }
 
         public void EfetuarLogout()

@@ -9,17 +9,13 @@ namespace Alura.LeilaoOnline.Selenium.Helpers
 {
     public class SelectMaterialize
     {
-        private readonly IWebDriver _driver;
         private readonly int _millisecondsTimeout;
         private IWebElement selectWrapper;
         public IEnumerable<IWebElement> Options { get; }
-
-        public SelectMaterialize(IWebDriver driver, By locatorSelectWrapper, int millisecondsTimeout = 500)
+        public SelectMaterialize(IWebElement element, int millisecondsTimeout = 500)
         {
-            _driver = driver;
+            selectWrapper = element;
             _millisecondsTimeout = millisecondsTimeout;
-
-            selectWrapper = _driver.FindElement(locatorSelectWrapper);
             Options = selectWrapper.FindElements(By.CssSelector("li>span"));
         }
 
@@ -55,7 +51,5 @@ namespace Alura.LeilaoOnline.Selenium.Helpers
                 .ForEach(o => o.Click());
             LoseFocus();
         }
-
-        
     }
 }
