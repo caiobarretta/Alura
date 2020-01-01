@@ -36,7 +36,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             dashboardInteressadaPO.EfetuarLogout();
 
             //Assert
-            Assert.Contains("Proximos Leilões", _driver.PageSource);
+            Assert.Contains("Próximos Leilões", _driver.PageSource);
         }
     }
 }
