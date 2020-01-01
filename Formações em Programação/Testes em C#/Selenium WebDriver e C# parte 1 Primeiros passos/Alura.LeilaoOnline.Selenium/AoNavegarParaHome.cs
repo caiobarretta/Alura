@@ -1,3 +1,4 @@
+using Alura.LeilaoOnline.Selenium.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -13,14 +14,26 @@ namespace Alura.LeilaoOnline.Selenium
         public void DadoChromeAbertoDeveMostrarLeiloesNoTitulo()
         {
             //Arrage
-            string location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            IWebDriver driver = new ChromeDriver(location);
+            IWebDriver driver = new ChromeDriver(TestHelper.PastaDoExecutavel());
 
             //Act
             driver.Navigate().GoToUrl("http://localhost:5000");
 
             //Assert
             Assert.Contains("Leilões", driver.Title);
+        }
+
+        [Fact]
+        public void DadoChromeAbertoDeveMostrarPróximosLeilõesNaPágina()
+        {
+            //Arrage
+            IWebDriver driver = new ChromeDriver(TestHelper.PastaDoExecutavel());
+
+            //Act
+            driver.Navigate().GoToUrl("http://localhost:5000");
+
+            //Assert
+            Assert.Contains("Próximos Leilões", driver.PageSource);
         }
     }
 }
