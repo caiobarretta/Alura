@@ -3,21 +3,22 @@ using System;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
-    internal class DashboardInteressadaPO
+    public class DashboardInteressadaPO
     {
-        private IWebDriver driver;
+        private readonly IWebDriver _driver;
+
         private By byLogoutLink;
 
         public DashboardInteressadaPO(IWebDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
 
             byLogoutLink = By.Id("logout");
         }
 
         public void EfetuarLogout()
         {
-            driver.FindElement(byLogoutLink);
+            _driver.FindElement(byLogoutLink).Click();
         }
     }
 }

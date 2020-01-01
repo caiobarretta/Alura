@@ -11,27 +11,32 @@ namespace Alura.LeilaoOnline.Selenium.Testes
     [Collection("Chrome Driver")]
     public class AoEfetuarLogout
     {
-        private IWebDriver driver;
+        private IWebDriver _driver;
+
+        private LoginPO loginPO;
+        private DashboardInteressadaPO dashboardInteressadaPO;
 
         public AoEfetuarLogout(TestFixture fixtuxe)
         {
-            this.driver = fixtuxe.Driver;
+           _driver = fixtuxe.Driver;
+
+            loginPO = new LoginPO(_driver);
+            dashboardInteressadaPO = new DashboardInteressadaPO(_driver);
         }
 
         [Fact]
         public void DadoLoginValidoDeveIrParaHomeNaoLogada()
         {
             //Arrange
-            var loginPO = new LoginPO(driver);
             loginPO.NavigateGoToUrl();
-
-            loginPO.PreencheFormulario("fulano@exemplo", "123");
+            loginPO.PreencheFormulario("fulano@example.org", "123");
             loginPO.SubmitForm();
 
             //Act
+            dashboardInteressadaPO.EfetuarLogout();
 
             //Assert
-            Assert.Contains("Proximos Leilões", driver.PageSource);
+            Assert.Contains("Proximos Leilões", _driver.PageSource);
         }
     }
 }
