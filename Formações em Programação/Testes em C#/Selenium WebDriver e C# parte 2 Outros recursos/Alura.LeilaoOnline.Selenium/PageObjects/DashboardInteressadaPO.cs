@@ -1,6 +1,9 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace Alura.LeilaoOnline.Selenium.PageObjects
 {
@@ -21,6 +24,37 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
             byLogoutLink = By.Id("logout");
             byMeuPerfilLink = By.Id("meu-perfil");
+            bySelectCategorias = By.ClassName("select-wrapper");
+        }
+
+        public void PesquisarLeiloes(List<string> categorias)
+        {
+            var selectWrapper = _driver.FindElement(bySelectCategorias);
+            Thread.Sleep(500);
+
+            selectWrapper.Click();
+
+            var opcoes = selectWrapper.FindElements(By.CssSelector("li>span")).ToList();
+
+            opcoes.ForEach(o =>
+            {
+                o.Click();
+            });
+
+            categorias.ForEach(categ =>
+            {
+                opcoes
+                    .Where(o => o.Text == categ)
+                    .ToList()
+                    .ForEach(o => o.Click());
+            });
+
+            Thread.Sleep(1000);
+
+            selectWrapper.FindElement(By.CssSelector("li"))
+                .SendKeys(Keys.Tab);
+
+            Thread.Sleep(1000);
         }
 
         public void EfetuarLogout()
