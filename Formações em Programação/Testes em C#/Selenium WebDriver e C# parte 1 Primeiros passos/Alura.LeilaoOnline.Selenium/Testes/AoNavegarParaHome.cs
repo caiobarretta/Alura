@@ -12,11 +12,11 @@ namespace Alura.LeilaoOnline.Selenium.Testes
     [Collection("Chrome Driver")]
     public class AoNavegarParaHome
     {
-        private readonly IWebDriver driver;
+        private readonly IWebDriver _driver;
         //Setup
         public AoNavegarParaHome(TestFixture fixture)
         {
-            driver = fixture.Driver;
+            _driver = fixture.Driver;
         }
 
         [Fact]
@@ -24,10 +24,10 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         {
             //Arrage
             //Act
-            driver.Navigate().GoToUrl("http://localhost:5000");
+            _driver.Navigate().GoToUrl("http://localhost:5000");
 
             //Assert
-            Assert.Contains("Leilões", driver.Title);
+            Assert.Contains("Leilões", _driver.Title);
         }
 
         [Fact]
@@ -35,10 +35,10 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         {
             //Arrage
             //Act
-            driver.Navigate().GoToUrl("http://localhost:5000");
+            _driver.Navigate().GoToUrl("http://localhost:5000");
 
             //Assert
-            Assert.Contains("Próximos Leilões", driver.PageSource);
+            Assert.Contains("Próximos Leilões", _driver.PageSource);
         }
     }
 }
