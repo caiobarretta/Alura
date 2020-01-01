@@ -8,13 +8,20 @@ using Xunit;
 
 namespace Alura.LeilaoOnline.Selenium
 {
-    public class AoNavegarParaHome
+    public class AoNavegarParaHome : IDisposable
     {
+        private readonly IWebDriver driver;
+        //Setup
+        public AoNavegarParaHome()
+        {
+            driver = new ChromeDriver(TestHelper.PastaDoExecutavel());
+
+        }
+
         [Fact]
         public void DadoChromeAbertoDeveMostrarLeiloesNoTitulo()
         {
             //Arrage
-            IWebDriver driver = new ChromeDriver(TestHelper.PastaDoExecutavel());
 
             //Act
             driver.Navigate().GoToUrl("http://localhost:5000");
@@ -27,13 +34,18 @@ namespace Alura.LeilaoOnline.Selenium
         public void DadoChromeAbertoDeveMostrarPróximosLeilõesNaPágina()
         {
             //Arrage
-            IWebDriver driver = new ChromeDriver(TestHelper.PastaDoExecutavel());
 
             //Act
             driver.Navigate().GoToUrl("http://localhost:5000");
 
             //Assert
             Assert.Contains("Próximos Leilões", driver.PageSource);
+        }
+
+        //TearDown
+        public void Dispose()
+        {
+            driver.Quit();
         }
     }
 }
