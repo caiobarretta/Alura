@@ -27,13 +27,34 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             byLogoutLink = By.Id("logout");
             byMeuPerfilLink = By.Id("meu-perfil");
             bySelectCategorias = By.ClassName("select-wrapper");
+            byInputTermo = By.Id("termo");
+            byInputAndamento = By.ClassName("switch");
+            byInputBtnPesquisar = By.CssSelector("form>button.btn");
         }
 
-        public void PesquisarLeiloes(List<string> categorias)
+        public void PesquisarLeiloes(List<string> categorias, string termo, bool emAndamento)
         {
-            var select = new SelectMaterialize(_driver.FindElement(bySelectCategorias));
+            var select = new SelectMaterialize(_driver.FindElement(bySelectCategorias), 1000);
             select.DeselectAll();
-            categorias.ForEach(categ => select.SelectByText(categ));
+            categorias.ForEach(categ =>
+            {
+                Thread.Sleep(2000);
+                select.SelectByText(categ);
+            });
+
+            _driver.FindElement(byInputTermo).SendKeys(termo);
+            Thread.Sleep(2000);
+
+            if (emAndamento)
+            {
+                var inputSwitch = _driver.FindElement(byInputAndamento);
+                Thread.Sleep(2000);
+                inputSwitch.Click();
+            }
+
+            Thread.Sleep(2000);
+            _driver.FindElement(byInputBtnPesquisar).Click();
+            Thread.Sleep(2000);
         }
 
         public void EfetuarLogout()

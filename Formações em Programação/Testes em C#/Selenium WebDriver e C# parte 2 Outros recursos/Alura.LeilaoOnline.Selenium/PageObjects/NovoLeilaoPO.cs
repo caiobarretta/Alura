@@ -28,7 +28,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         {
             get
             {
-                return new SelectElement(_driver.FindElement(inputCategoria)).Options
+                return new SelectMaterialize(_driver.FindElement(inputCategoria)).Options
                     .Where(o => o.Enabled)
                     .Select(o => o.Text);
             }
