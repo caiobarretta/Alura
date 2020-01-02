@@ -1,6 +1,7 @@
 ﻿using Alura.LeilaoOnline.Selenium.Fixtures;
 using Alura.LeilaoOnline.Selenium.PageObjects;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,9 +38,10 @@ namespace Alura.LeilaoOnline.Selenium.Testes
             //Act
             detalheLeilaoPO.OfertaLance(300);
 
-
             //Assert
-            Assert.Equal(300, detalheLeilaoPO.LanceAtual);
+            var await = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            bool iguais = await.Until(drv => detalheLeilaoPO.LanceAtual == 300);
+            Assert.True(iguais);
         }
     }
 }
