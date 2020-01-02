@@ -14,8 +14,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
         private By byInputBtnDarLance;
         private By byInputLanceAtual;
 
-        public int LanceAtual => (int.TryParse(_driver.FindElement(byInputLanceAtual).Text, out int result) ? result : 0);
-
+        public double LanceAtual => double.Parse(_driver.FindElement(byInputLanceAtual).Text, System.Globalization.NumberStyles.Currency);
 
         public DetalheLeilaoPO(IWebDriver driver)
         {
