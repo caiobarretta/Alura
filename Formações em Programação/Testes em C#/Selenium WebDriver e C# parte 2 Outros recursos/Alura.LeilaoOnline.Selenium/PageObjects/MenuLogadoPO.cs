@@ -12,6 +12,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
         private By byLogoutLink;
         private By byMeuPerfilLink;
+        private By ByTableMinhasOfertas;
 
         public MenuLogadoPO(IWebDriver driver)
         {
@@ -19,6 +20,7 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
 
             byLogoutLink = By.Id("logout");
             byMeuPerfilLink = By.Id("meu-perfil");
+            ByTableMinhasOfertas = By.XPath("//table/tbody/tr[last()]");
         }
 
         public void EfetuarLogout()
