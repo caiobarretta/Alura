@@ -28,9 +28,7 @@ namespace Alura.LeilaoOnline.Selenium.Testes
         public void DadoLoginValidoDeveIrParaHomeNaoLogada()
         {
             //Arrange
-            loginPO.NavigateGoToUrl();
-            loginPO.PreencheFormulario("fulano@example.org", "123");
-            loginPO.SubmitForm();
+            loginPO.EfetuarLoginComCredenciais("fulano@example.org", "123");
 
             //Act
             dashboardInteressadaPO.Menu.EfetuarLogout();

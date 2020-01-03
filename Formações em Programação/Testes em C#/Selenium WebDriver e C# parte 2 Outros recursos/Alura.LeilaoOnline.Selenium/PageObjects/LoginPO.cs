@@ -24,20 +24,39 @@ namespace Alura.LeilaoOnline.Selenium.PageObjects
             byInputBtnLogin = By.Id("btnLogin");
         }
 
-        public void PreencheFormulario(string login, string password)
+        public LoginPO PreencheFormulario(string login, string password) => InformarEmail(login).InformaSenha(password);
+
+        public LoginPO InformarEmail(string login)
         {
             _driver.FindElement(byInputLogin).SendKeys(login);//Login
-            _driver.FindElement(byInputPassword).SendKeys(password);//Password
+            return this;
         }
 
-        public void NavigateGoToUrl()
+        public LoginPO InformaSenha(string password)
+        {
+            _driver.FindElement(byInputPassword).SendKeys(password);//Password
+            return this;
+        }
+
+        public LoginPO NavigateGoToUrl()
         {
             _driver.Navigate().GoToUrl(Url);
+            return this;
+
         }
 
-        public void SubmitForm()
+        public LoginPO SubmitForm()
         {
             _driver.FindElement(byInputBtnLogin).Submit();
+            return this;
+
+        }
+
+        public void EfetuarLoginComCredenciais(string login, string password)
+        {
+            NavigateGoToUrl()
+            .PreencheFormulario(login, password)
+            .SubmitForm();
         }
 
     }
