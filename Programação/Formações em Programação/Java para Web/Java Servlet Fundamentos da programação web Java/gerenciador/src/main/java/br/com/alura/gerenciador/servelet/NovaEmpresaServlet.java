@@ -18,7 +18,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var nomeEmpresa =  request.getParameter("nome");
 		
 		var out = response.getWriter();
