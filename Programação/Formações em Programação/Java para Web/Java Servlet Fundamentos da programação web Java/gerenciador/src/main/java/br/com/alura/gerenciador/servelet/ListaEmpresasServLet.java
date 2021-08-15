@@ -23,22 +23,10 @@ public class ListaEmpresasServLet extends HttpServlet {
 			throws ServletException, IOException {
 		Banco banco = new Banco();
 		var lista = banco.getEmpresas();
-		var out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
 		
-		out.println("<ul>");
-		
-		for (Empresa empresa : lista) {
-			out.println("<li>");
-			out.println(empresa.getNome());
-			out.println("</li>");
-		}
-		
-		out.println("</ul>");
-		
-		out.println("</body>");
-		out.println("</html>");
+		request.setAttribute("empresas", lista);
+		var rd = request.getRequestDispatcher("/listaEmpresas.jsp");
+		rd.forward(request, response);
 	}
 
 }
