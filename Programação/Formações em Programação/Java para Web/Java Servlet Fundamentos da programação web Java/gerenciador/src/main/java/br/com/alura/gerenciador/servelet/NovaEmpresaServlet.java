@@ -21,6 +21,12 @@ public class NovaEmpresaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var nomeEmpresa =  request.getParameter("nome");
 		
+		var empresa = new Empresa();
+		empresa.setNome(nomeEmpresa);
+		
+		var banco = new Banco();
+		banco.adiciona(empresa);
+		
 		var out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
