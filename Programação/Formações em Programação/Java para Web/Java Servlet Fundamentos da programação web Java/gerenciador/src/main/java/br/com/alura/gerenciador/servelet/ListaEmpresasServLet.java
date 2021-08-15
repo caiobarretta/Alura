@@ -1,6 +1,7 @@
 package br.com.alura.gerenciador.servelet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import jakarta.servlet.ServletException;
@@ -23,7 +24,6 @@ public class ListaEmpresasServLet extends HttpServlet {
 			throws ServletException, IOException {
 		Banco banco = new Banco();
 		var lista = banco.getEmpresas();
-		
 		request.setAttribute("empresas", lista);
 		var rd = request.getRequestDispatcher("/listaEmpresas.jsp");
 		rd.forward(request, response);
