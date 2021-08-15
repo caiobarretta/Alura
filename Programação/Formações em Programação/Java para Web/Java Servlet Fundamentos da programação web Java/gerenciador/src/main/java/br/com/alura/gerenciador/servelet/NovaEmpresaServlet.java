@@ -28,11 +28,7 @@ public class NovaEmpresaServlet extends HttpServlet {
 		banco.adiciona(empresa);
 		
 		var out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println(nomeEmpresa + " Empresa cadastrada com sucesso!");
-		out.println("</body>");
-		out.println("</html>");
+		
 	}
 
 }
