@@ -12,6 +12,10 @@
 <title>Lista de empresas - Java Standard TabLib</title>
 </head>
 <body>
+	<c:if test="${not empty empresa}">
+			Empresa: ${empresa} cadastrada com sucesso! <br/>
+	</c:if>
+	Lista de empresa: <br/>
 	<ul>
 		<c:forEach items="${empresas}" var="empresa">
 			<li>${empresa.nome} - <fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/> </li>

@@ -40,8 +40,10 @@ public class NovaEmpresaServlet extends HttpServlet {
 		var banco = new Banco();
 		banco.adiciona(empresa);
 		
+		request.setAttribute("empresa", empresa.getNome());
+		
 		//Chamar JSP
-		var rd = request.getRequestDispatcher("/novaEmpresaCriada.jsp");
+		var rd = request.getRequestDispatcher("listaEmpresas");
 		request.setAttribute("empresa", empresa.getNome());
 		rd.forward(request, response);
 	}
