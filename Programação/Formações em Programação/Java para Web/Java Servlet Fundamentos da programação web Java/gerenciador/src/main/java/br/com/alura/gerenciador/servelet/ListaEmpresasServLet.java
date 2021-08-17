@@ -1,9 +1,8 @@
 package br.com.alura.gerenciador.servelet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 
+import br.com.alura.gerenciador.modelo.Banco;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
