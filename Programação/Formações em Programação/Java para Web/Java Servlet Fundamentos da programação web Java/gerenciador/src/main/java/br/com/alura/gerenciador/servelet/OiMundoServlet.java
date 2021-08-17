@@ -11,6 +11,11 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/oi")
 public class OiMundoServlet extends HttpServlet{
 	
+	public OiMundoServlet() {
+		// TODO Auto-generated constructor stub
+		System.out.println("Criando Oi Mundo Servlet");
+	}
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		var out = resp.getWriter();
