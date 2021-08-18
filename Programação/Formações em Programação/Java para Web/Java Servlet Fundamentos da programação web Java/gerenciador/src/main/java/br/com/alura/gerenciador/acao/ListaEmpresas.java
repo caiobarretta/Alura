@@ -10,11 +10,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ListaEmpresas {
 	
 	
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Banco banco = new Banco();
 		var lista = banco.getEmpresas();
 		request.setAttribute("empresas", lista);
-		var rd = request.getRequestDispatcher("/listaEmpresas.jsp");
-		rd.forward(request, response);
+		
+		return "forward:listaEmpresas.jsp";
 	}
 }

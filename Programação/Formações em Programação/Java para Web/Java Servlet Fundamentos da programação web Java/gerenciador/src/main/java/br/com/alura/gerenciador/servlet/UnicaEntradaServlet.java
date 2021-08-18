@@ -22,12 +22,14 @@ public class UnicaEntradaServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var paramAcao = request.getParameter("acao");
+		String nome = null;
+		
 		if(paramAcao.equals("ListaEmpresas")) {
 			var acao = new ListaEmpresas();
-			acao.executa(request, response);
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("RemoveEmpresa")) {
 			var acao = new RemoveEmpresa();
-			acao.executa(request, response);
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("MostraEmpresa")) {
 			var acao = new MostraEmpresa();
 			acao.executa(request, response);
@@ -37,6 +39,14 @@ public class UnicaEntradaServlet extends HttpServlet {
 		}else if(paramAcao.equals("NovaEmpresa")) {
 			var acao = new NovaEmpresa();
 			acao.executa(request, response);
+		}
+		
+		var  tipoEEndereco = nome.split(":");
+		if(tipoEEndereco[0].equals("forward")) {
+			var rd = request.getRequestDispatcher(tipoEEndereco[1]);
+			rd.forward(request, response);
+		}else {
+			response.sendRedirect(tipoEEndereco[1]);
 		}
 	}
 
