@@ -32,13 +32,13 @@ public class UnicaEntradaServlet extends HttpServlet {
 			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("MostraEmpresa")) {
 			var acao = new MostraEmpresa();
-			acao.executa(request, response);
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("AlteraEmpresa")) {
 			var acao = new AlteraEmpresa();
-			acao.executa(request, response);
+			nome = acao.executa(request, response);
 		}else if(paramAcao.equals("NovaEmpresa")) {
 			var acao = new NovaEmpresa();
-			acao.executa(request, response);
+			nome = acao.executa(request, response);
 		}
 		
 		var  tipoEEndereco = nome.split(":");

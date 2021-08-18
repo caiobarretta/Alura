@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class MostraEmpresa {
-	public void executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var paramId = request.getParameter("id");
 		var id = Integer.valueOf(paramId);
 		
@@ -18,7 +18,6 @@ public class MostraEmpresa {
 		
 		request.setAttribute("empresa", empresa);
 		
-		var rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-		rd.forward(request, response);
+		return "forward:formAlteraEmpresa.jsp";
 	}
 }
