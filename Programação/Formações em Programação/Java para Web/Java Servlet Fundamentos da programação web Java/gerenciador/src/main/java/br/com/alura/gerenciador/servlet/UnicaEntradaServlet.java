@@ -2,7 +2,11 @@ package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
 
+import br.com.alura.gerenciador.acao.AlteraEmpresa;
 import br.com.alura.gerenciador.acao.ListaEmpresas;
+import br.com.alura.gerenciador.acao.MostraEmpresa;
+import br.com.alura.gerenciador.acao.NovaEmpresa;
+import br.com.alura.gerenciador.acao.RemoveEmpresa;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,9 +26,17 @@ public class UnicaEntradaServlet extends HttpServlet {
 			var acao = new ListaEmpresas();
 			acao.executa(request, response);
 		}else if(paramAcao.equals("RemoveEmpresa")) {
-			System.out.println("Removendo empresa");
+			var acao = new RemoveEmpresa();
+			acao.executa(request, response);
 		}else if(paramAcao.equals("MostraEmpresa")) {
-			System.out.println("Mostrando empresa");
+			var acao = new MostraEmpresa();
+			acao.executa(request, response);
+		}else if(paramAcao.equals("AlteraEmpresa")) {
+			var acao = new AlteraEmpresa();
+			acao.executa(request, response);
+		}else if(paramAcao.equals("NovaEmpresa")) {
+			var acao = new NovaEmpresa();
+			acao.executa(request, response);
 		}
 	}
 
