@@ -2,12 +2,7 @@ package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
 
-import br.com.alura.gerenciador.acao.AlteraEmpresa;
-import br.com.alura.gerenciador.acao.ListaEmpresas;
-import br.com.alura.gerenciador.acao.MostraEmpresa;
-import br.com.alura.gerenciador.acao.NovaEmpresa;
-import br.com.alura.gerenciador.acao.NovaEmpresaForm;
-import br.com.alura.gerenciador.acao.RemoveEmpresa;
+import br.com.alura.gerenciador.acao.Acao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,24 +20,14 @@ public class UnicaEntradaServlet extends HttpServlet {
 		var paramAcao = request.getParameter("acao");
 		String nome = null;
 		
-		if(paramAcao.equals("ListaEmpresas")) {
-			var acao = new ListaEmpresas();
+		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
+		
+		try {
+			Class classe = Class.forName(nomeDaClasse);
+			Acao acao = (Acao)classe.newInstance();
 			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("RemoveEmpresa")) {
-			var acao = new RemoveEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("MostraEmpresa")) {
-			var acao = new MostraEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("AlteraEmpresa")) {
-			var acao = new AlteraEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("NovaEmpresa")) {
-			var acao = new NovaEmpresa();
-			nome = acao.executa(request, response);
-		}else if(paramAcao.equals("NovaEmpresaForm")) {
-			var acao = new NovaEmpresaForm();
-			nome = acao.executa(request, response);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException e) {
+			throw new ServletException(e);
 		}
 		
 		var  tipoEEndereco = nome.split(":");

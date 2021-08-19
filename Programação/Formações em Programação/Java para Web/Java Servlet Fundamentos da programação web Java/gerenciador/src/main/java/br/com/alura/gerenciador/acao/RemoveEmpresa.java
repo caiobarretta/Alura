@@ -7,7 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class RemoveEmpresa {
+public class RemoveEmpresa implements Acao {
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var paramId = request.getParameter("id");
 		var id = Integer.valueOf(paramId);
