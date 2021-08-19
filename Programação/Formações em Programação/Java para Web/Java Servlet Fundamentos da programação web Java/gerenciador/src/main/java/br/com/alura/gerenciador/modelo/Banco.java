@@ -24,7 +24,7 @@ public class Banco {
 		u1.setLogin("caio");
 		u1.setSenha("1234");
 		var u2 = new Usuario();
-		u2.setLogin("caio");
+		u2.setLogin("augusto");
 		u2.setSenha("1234");
 		
 		listaUsuarios.add(u1);
@@ -54,6 +54,14 @@ public class Banco {
 			if(empresa.getId() == id) {
 				return empresa;
 			}
+		}
+		return null;
+	}
+
+	public Usuario existeUsuario(String login, String senha) {
+		for (var usuario : listaUsuarios) {
+			if(usuario.ehIgual(login, senha))
+				return usuario;
 		}
 		return null;
 	}

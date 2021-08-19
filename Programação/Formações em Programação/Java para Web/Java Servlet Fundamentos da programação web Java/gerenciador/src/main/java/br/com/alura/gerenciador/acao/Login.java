@@ -1,7 +1,8 @@
 package br.com.alura.gerenciador.acao;
 
 import java.io.IOException;
-
+import br.com.alura.gerenciador.modelo.Banco;
+import br.com.alura.gerenciador.modelo.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,8 +16,10 @@ public class Login implements Acao {
 		var login = request.getParameter("login");
 		var senha = request.getParameter("senha");
 		
-		
-		return "redirect:entrada?acao=ListaEmpresas";
+		var banco = new Banco();
+		Usuario usuario = banco.existeUsuario(login, senha);
+		if(usuario != null)
+			return "redirect:entrada?acao=ListaEmpresas";
+		return "redirect:entrada?acao=LoginForm";
 	}
-
 }
