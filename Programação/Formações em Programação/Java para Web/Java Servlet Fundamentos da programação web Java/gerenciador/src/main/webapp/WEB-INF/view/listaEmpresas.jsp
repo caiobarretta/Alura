@@ -15,6 +15,10 @@
 <title>Lista de empresas - Java Standard TabLib</title>
 </head>
 <body>
+
+	Usuario Logado: ${usuarioLogado.login }
+	<br><br><br>
+	
 	<c:if test="${not empty empresa}">
 			Empresa: ${empresa} cadastrada com sucesso! <br/>
 	</c:if>

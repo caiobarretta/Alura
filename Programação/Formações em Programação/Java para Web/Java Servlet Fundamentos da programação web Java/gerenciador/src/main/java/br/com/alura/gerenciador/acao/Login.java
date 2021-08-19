@@ -18,8 +18,11 @@ public class Login implements Acao {
 		
 		var banco = new Banco();
 		Usuario usuario = banco.existeUsuario(login, senha);
-		if(usuario != null)
+		if(usuario != null) {
+			var sessao = request.getSession();
+			sessao.setAttribute("usuarioLogado", usuario);
 			return "redirect:entrada?acao=ListaEmpresas";
+		}
 		return "redirect:entrada?acao=LoginForm";
 	}
 }
