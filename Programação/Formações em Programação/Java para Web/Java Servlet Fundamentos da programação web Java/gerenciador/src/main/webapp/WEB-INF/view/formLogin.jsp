@@ -7,7 +7,6 @@
 <title>Login</title>
 </head>
 <body>
-	
 	<form action="${linkServletEntrada}" method="post">
 		Login: <input type="text" name="login" />
 		Senha: <input type="password" name="senha" />
